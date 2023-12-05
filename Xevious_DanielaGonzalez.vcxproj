@@ -165,11 +165,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Enemy\enemy.cpp" />
     <ClCompile Include="src\Game\game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PlayerShip\playerShip.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Enemy\enemy.h" />
     <ClInclude Include="src\Game\game.h" />
     <ClInclude Include="src\PlayerShip\playerShip.h" />
   </ItemGroup>
