@@ -9,7 +9,7 @@ void initBullet(Bullet& bullet, PlayerShip ship)
 	bullet.texture = LoadTexture("res/tempBullet.png");
 	bullet.pos = ship.pos;
 	bullet.alive = false;
-	bullet.speed = 400.f;
+	bullet.speed = 500.f;
 	bullet.color = WHITE;
 }
 

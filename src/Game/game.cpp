@@ -9,8 +9,10 @@
 
 namespace game
 {
+const int maxBullets = 4;
+
 static PlayerShip ship;
-static Bullet bullet;
+static Bullet bullets[maxBullets];
 static Enemy enemy;
 
 void updateGame();
@@ -20,7 +22,10 @@ void shoot();
 void initGame()
 {
 	initPlayerShip(ship);
-	initBullet(bullet, ship);
+	for (int i = 0; i < maxBullets; i++)
+	{
+		initBullet(bullets[i], ship);
+	}
 	initEnmey(enemy);
 	initBackground();	
 }
@@ -29,9 +34,12 @@ void updateGame()
 {
 	updateGameObjects();
 
-	if (checkCollisions(bullet.pos, bullet.texture, enemy.pos, enemy.texture) && bullet.alive)
+	for (int i = 0; i < maxBullets; i++)
 	{
-		enemy.alive = false;
+		if (checkCollisions(bullets[i].pos, bullets[i].texture, enemy.pos, enemy.texture) && bullets[i].alive)
+		{
+			enemy.alive = false;
+		}
 	}
 
 	if (checkCollisions(ship.pos, ship.texture, enemy.pos, enemy.texture) && enemy.alive)
@@ -45,7 +53,12 @@ void updateGameObjects()
 {
 	updateBackground();
 	updatePlayerShip(ship);
-	updateBullet(bullet, ship);
+
+	for (int i = 0; i < maxBullets; i++)
+	{
+		updateBullet(bullets[i], ship);
+	}
+
 	shoot();
 	updateEnemy(enemy);
 }
@@ -54,7 +67,10 @@ void drawGame()
 {
 	drawBackground();
 	drawEnemy(enemy);
-	drawBullet(bullet);
+	for (int i = 0; i < maxBullets; i++)
+	{
+		drawBullet(bullets[i]);
+	}
 	drawPlayerShip(ship);
 }
 
@@ -62,16 +78,23 @@ void deInitGame()
 {
 	deInitPlayerShip(ship);
 	deInitEnemy(enemy);
-	deInitBullet(bullet);
+	for (int i = 0; i < maxBullets; i++)
+	{
+		deInitBullet(bullets[i]);
+	}
 	deInitBackground();
 }
 
 void shoot()
 {
-	if (IsKeyPressed(KEY_SPACE) && !bullet.alive && ship.alive)
+	for (int i = 0; i < maxBullets; i++)
 	{
-		playShootSound();
-		bullet.alive = true;
+		if (IsKeyPressed(KEY_SPACE) && !bullets[i].alive && ship.alive)
+		{
+			playShootSound();
+			bullets[i].alive = true;
+			break;
+		}
 	}
 }
 }
