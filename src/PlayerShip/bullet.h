@@ -15,6 +15,6 @@ struct Bullet
 };
 
 void initBullet(Bullet& bullet, PlayerShip ship);
-//void updateBullet(Bullet& bullet);
+void updateBullet(Bullet& bullet, PlayerShip ship);
 void drawBullet(Bullet bullet);
 }

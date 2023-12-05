@@ -12,8 +12,11 @@ static Enemy enemy;
 
 void init();
 void update();
+void updateGameObjects();
 void draw();
 void deInit();
+
+void shoot();
 
 void loop()
 {
@@ -35,11 +38,17 @@ void update()
 {
 	while (!WindowShouldClose())
 	{
-		updatePlayerShip(ship);
-
-		updateEnemy(enemy);
+		updateGameObjects();
 		draw();
 	}
+}
+
+void updateGameObjects()
+{
+	updatePlayerShip(ship);
+	updateBullet(bullet, ship);
+	shoot();
+	updateEnemy(enemy);
 }
 
 void draw()
@@ -59,5 +68,13 @@ void deInit()
 	deInitPlayerShip(ship);
 	deInitEnemy(enemy);
 	CloseWindow();
+}
+
+void shoot()
+{
+	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_SPACE))
+	{
+		bullet.alive = true;
+	}
 }
 }
