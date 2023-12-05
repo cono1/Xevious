@@ -5,6 +5,7 @@
 #include "Enemy/enemy.h"
 #include "collisions.h"
 #include "Background/background.h"
+#include "Sound/sound.h"
 
 namespace game
 {
@@ -35,12 +36,17 @@ void init()
 	initBullet(bullet, ship);
 	initEnmey(enemy);
 	initBackground();
+	initAudio();
+	SetMusicVolume(getGameMusic(), 0.2f);
 }
 
 void update()
 {
 	while (!WindowShouldClose())
 	{
+		playGameMusic();
+		UpdateMusicStream(getGameMusic());
+
 		updateGameObjects();
 
 		if (checkCollisions(bullet.pos, bullet.texture, enemy.pos, enemy.texture) && bullet.alive)
@@ -86,6 +92,7 @@ void deInit()
 	deInitEnemy(enemy);
 	deInitBullet(bullet);
 	deInitBackground();
+	deInitAudio();
 	CloseWindow();
 }
 
