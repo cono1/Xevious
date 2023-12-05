@@ -15,7 +15,7 @@ struct Enemy
 };
 
 void initEnmey(Enemy& enemy);
-//void updateEnemy(Enemy& enemy);
+void updateEnemy(Enemy& enemy);
 void drawEnemy(Enemy& enemy);
 void deInitEnemy(Enemy& enemy);
 }

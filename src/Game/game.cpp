@@ -32,6 +32,7 @@ void update()
 	while (!WindowShouldClose())
 	{
 		updatePlayerShip(ship);
+		updateEnemy(enemy);
 		draw();
 	}
 }
