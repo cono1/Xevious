@@ -1,7 +1,7 @@
-#include "Game/game.h"
+#include "gameManager.h"
 
 int main(void)
 {
-    game::loop();
+    game::gameLoop();
     return 0;
 }

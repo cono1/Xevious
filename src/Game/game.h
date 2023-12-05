@@ -2,5 +2,8 @@
 
 namespace game
 {
-void loop();
+void initGame();
+void updateGame();
+void drawGame();
+void deInitGame();
 }

@@ -9,6 +9,8 @@
     <ClCompile Include="src\Game\collisions.cpp" />
     <ClCompile Include="src\Background\background.cpp" />
     <ClCompile Include="src\Sound\sound.cpp" />
+    <ClCompile Include="src\Menu\menu.cpp" />
+    <ClCompile Include="src\gameManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PlayerShip\playerShip.h" />
@@ -18,5 +20,7 @@
     <ClInclude Include="src\Game\collisions.h" />
     <ClInclude Include="src\Background\background.h" />
     <ClInclude Include="src\Sound\sound.h" />
+    <ClInclude Include="src\Menu\menu.h" />
+    <ClInclude Include="src\gameManager.h" />
   </ItemGroup>
 </Project>

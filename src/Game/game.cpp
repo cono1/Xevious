@@ -13,54 +13,31 @@ static PlayerShip ship;
 static Bullet bullet;
 static Enemy enemy;
 
-void init();
-void update();
+void updateGame();
 void updateGameObjects();
-void draw();
-void deInit();
-
 void shoot();
 
-void loop()
+void initGame()
 {
-	init();
-	update();
-	deInit();
-}
-
-void init()
-{
-	InitWindow(1024, 768, "Xevious_DanielaGonzalez");
-
 	initPlayerShip(ship);
 	initBullet(bullet, ship);
 	initEnmey(enemy);
-	initBackground();
-	initAudio();
-	SetMusicVolume(getGameMusic(), 0.2f);
+	initBackground();	
 }
 
-void update()
+void updateGame()
 {
-	while (!WindowShouldClose())
+	updateGameObjects();
+
+	if (checkCollisions(bullet.pos, bullet.texture, enemy.pos, enemy.texture) && bullet.alive)
 	{
-		playGameMusic();
-		UpdateMusicStream(getGameMusic());
+		enemy.alive = false;
+	}
 
-		updateGameObjects();
-
-		if (checkCollisions(bullet.pos, bullet.texture, enemy.pos, enemy.texture) && bullet.alive)
-		{
-			enemy.alive = false;
-		}
-
-		if (checkCollisions(ship.pos, ship.texture, enemy.pos, enemy.texture) && enemy.alive)
-		{
-			ship.alive = false;
-			restartBackground();
-		}
-
-		draw();
+	if (checkCollisions(ship.pos, ship.texture, enemy.pos, enemy.texture) && enemy.alive)
+	{
+		ship.alive = false;
+		restartBackground();
 	}
 }
 
@@ -73,27 +50,20 @@ void updateGameObjects()
 	updateEnemy(enemy);
 }
 
-void draw()
+void drawGame()
 {
-	BeginDrawing();
-	ClearBackground(RAYWHITE);
-
 	drawBackground();
 	drawEnemy(enemy);
 	drawBullet(bullet);
 	drawPlayerShip(ship);
-	
-	EndDrawing();
 }
 
-void deInit()
+void deInitGame()
 {
 	deInitPlayerShip(ship);
 	deInitEnemy(enemy);
 	deInitBullet(bullet);
 	deInitBackground();
-	deInitAudio();
-	CloseWindow();
 }
 
 void shoot()
