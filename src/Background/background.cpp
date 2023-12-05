@@ -14,14 +14,14 @@ void initBackground()
 
 	scrollingBackPos = 0.0f;
 
-	backSpeed = 15.f;
+	backSpeed = 30.f;
 }
 
 void updateBackground()
 {
-	scrollingBackPos -= backSpeed * GetFrameTime();
+	scrollingBackPos += backSpeed * GetFrameTime();
 
-	if (scrollingBackPos <= -background.height) scrollingBackPos = 0;
+	if (scrollingBackPos >= background.height) scrollingBackPos = 0;
 }
 
 void drawBackground()
@@ -30,7 +30,7 @@ void drawBackground()
 	Color color = WHITE;
 
 	DrawTextureEx(background, { 0, scrollingBackPos }, 0.0f, scale, color);
-	DrawTextureEx(background, { 0, background.height + scrollingBackPos }, 0.0f, scale, color);
+	DrawTextureEx(background, { 0, scrollingBackPos - background.height }, 0.0f, scale, color);
 }
 
 void restartBackground()
