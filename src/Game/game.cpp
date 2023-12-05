@@ -4,6 +4,7 @@
 #include "PlayerShip/bullet.h"
 #include "Enemy/enemy.h"
 #include "collisions.h"
+#include "Background/background.h"
 
 namespace game
 {
@@ -33,6 +34,7 @@ void init()
 	initPlayerShip(ship);
 	initBullet(bullet, ship);
 	initEnmey(enemy);
+	initBackground();
 }
 
 void update()
@@ -40,6 +42,7 @@ void update()
 	while (!WindowShouldClose())
 	{
 		updateGameObjects();
+
 		if (checkCollisions(bullet.pos, bullet.texture, enemy.pos, enemy.texture) && bullet.alive)
 		{
 			enemy.alive = false;
@@ -48,6 +51,7 @@ void update()
 		if (checkCollisions(ship.pos, ship.texture, enemy.pos, enemy.texture) && enemy.alive)
 		{
 			ship.alive = false;
+			restartBackground();
 		}
 
 		draw();
@@ -56,6 +60,7 @@ void update()
 
 void updateGameObjects()
 {
+	updateBackground();
 	updatePlayerShip(ship);
 	updateBullet(bullet, ship);
 	shoot();
@@ -67,6 +72,7 @@ void draw()
 	BeginDrawing();
 	ClearBackground(RAYWHITE);
 
+	drawBackground();
 	drawEnemy(enemy);
 	drawBullet(bullet);
 	drawPlayerShip(ship);
@@ -79,6 +85,7 @@ void deInit()
 	deInitPlayerShip(ship);
 	deInitEnemy(enemy);
 	deInitBullet(bullet);
+	deInitBackground();
 	CloseWindow();
 }
 

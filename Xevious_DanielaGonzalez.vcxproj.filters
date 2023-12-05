@@ -7,6 +7,7 @@
     <ClCompile Include="src\Enemy\enemy.cpp" />
     <ClCompile Include="src\PlayerShip\bullet.cpp" />
     <ClCompile Include="src\Game\collisions.cpp" />
+    <ClCompile Include="src\Background\background.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PlayerShip\playerShip.h" />
@@ -14,5 +15,6 @@
     <ClInclude Include="src\Enemy\enemy.h" />
     <ClInclude Include="src\PlayerShip\bullet.h" />
     <ClInclude Include="src\Game\collisions.h" />
+    <ClInclude Include="src\Background\background.h" />
   </ItemGroup>
 </Project>
