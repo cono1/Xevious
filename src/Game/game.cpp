@@ -1,11 +1,13 @@
 #include "game.h"
 
 #include "PlayerShip/playerShip.h"
+#include "PlayerShip/bullet.h"
 #include "Enemy/enemy.h"
 
 namespace game
 {
 static PlayerShip ship;
+static Bullet bullet;
 static Enemy enemy;
 
 void init();
@@ -23,7 +25,9 @@ void loop()
 void init()
 {
 	InitWindow(1024, 768, "Xevious_DanielaGonzalez");
+
 	initPlayerShip(ship);
+	initBullet(bullet, ship);
 	initEnmey(enemy);
 }
 
@@ -32,6 +36,7 @@ void update()
 	while (!WindowShouldClose())
 	{
 		updatePlayerShip(ship);
+
 		updateEnemy(enemy);
 		draw();
 	}
@@ -43,6 +48,7 @@ void draw()
 	ClearBackground(RAYWHITE);
 
 	drawEnemy(enemy);
+	drawBullet(bullet);
 	drawPlayerShip(ship);
 	
 	EndDrawing();
