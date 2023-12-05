@@ -3,6 +3,7 @@
 #include "PlayerShip/playerShip.h"
 #include "PlayerShip/bullet.h"
 #include "Enemy/enemy.h"
+#include "collisions.h"
 
 namespace game
 {
@@ -39,6 +40,16 @@ void update()
 	while (!WindowShouldClose())
 	{
 		updateGameObjects();
+		if (checkCollisions(bullet.pos, bullet.texture, enemy.pos, enemy.texture) && bullet.alive)
+		{
+			enemy.alive = false;
+		}
+
+		if (checkCollisions(ship.pos, ship.texture, enemy.pos, enemy.texture) && enemy.alive)
+		{
+			ship.alive = false;
+		}
+
 		draw();
 	}
 }

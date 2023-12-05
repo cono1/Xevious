@@ -23,29 +23,33 @@ void initPlayerShip(PlayerShip& ship)
 
 void updatePlayerShip(PlayerShip& ship)
 {
-	if (IsKeyDown(KEY_UP) && ship.pos.y > 0)
+	if (ship.alive)
 	{
-		moveUp(ship);
-	}
+		if (IsKeyDown(KEY_UP) && ship.pos.y > 0)
+		{
+			moveUp(ship);
+		}
 
-	if (IsKeyDown(KEY_DOWN) && ship.pos.y + ship.texture.height < GetScreenHeight())
-	{
-		moveDown(ship);
-	}
+		if (IsKeyDown(KEY_DOWN) && ship.pos.y + ship.texture.height < GetScreenHeight())
+		{
+			moveDown(ship);
+		}
 
-	if (IsKeyDown(KEY_LEFT) && ship.pos.x > 0)
-	{
-		moveLeft(ship);
-	}
+		if (IsKeyDown(KEY_LEFT) && ship.pos.x > 0)
+		{
+			moveLeft(ship);
+		}
 
-	if (IsKeyDown(KEY_RIGHT) && ship.pos.x + ship.texture.width < GetScreenWidth())
-	{
-		moveRight(ship);
+		if (IsKeyDown(KEY_RIGHT) && ship.pos.x + ship.texture.width < GetScreenWidth())
+		{
+			moveRight(ship);
+		}
 	}
 }
 
 void drawPlayerShip(PlayerShip ship)
 {
+	if(ship.alive)
 	DrawTextureV(ship.texture, ship.pos, ship.color);
 }
 
