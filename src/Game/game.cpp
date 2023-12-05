@@ -67,6 +67,7 @@ void deInit()
 {
 	deInitPlayerShip(ship);
 	deInitEnemy(enemy);
+	deInitBullet(bullet);
 	CloseWindow();
 }
 

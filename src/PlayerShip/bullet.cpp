@@ -6,25 +6,23 @@ bool checkBulletScreenLimit(Bullet bullet);
 
 void initBullet(Bullet& bullet, PlayerShip ship)
 {
-	bullet.rect.x = ship.pos.x;
-	bullet.rect.y = ship.pos.y;
-	bullet.rect.width = 15;
-	bullet.rect.height = 15;
+	bullet.texture = LoadTexture("res/tempBullet.png");
+	bullet.pos = ship.pos;
 	bullet.alive = false;
 	bullet.speed = 400.f;
-	bullet.color = BLACK;
+	bullet.color = WHITE;
 }
 
 void updateBullet(Bullet& bullet, PlayerShip ship)
 {
 	if (bullet.alive)
 	{
-		bullet.rect.y -= bullet.speed * GetFrameTime();
+		bullet.pos.y -= bullet.speed * GetFrameTime();
 	}
 	else
 	{
-		bullet.rect.x = ship.pos.x;
-		bullet.rect.y = ship.pos.y;
+		bullet.pos.x = ship.pos.x;
+		bullet.pos.y = ship.pos.y;
 	}
 
 	if (checkBulletScreenLimit(bullet))
@@ -35,12 +33,17 @@ void updateBullet(Bullet& bullet, PlayerShip ship)
 	
 void drawBullet(Bullet bullet)
 {
-	if(bullet.alive)
-	DrawRectangleRec(bullet.rect, bullet.color);
+	if (bullet.alive)
+		DrawTextureV(bullet.texture, bullet.pos, bullet.color);
+}
+
+void deInitBullet(Bullet& bullet)
+{
+	UnloadTexture(bullet.texture);
 }
 
 bool checkBulletScreenLimit(Bullet bullet)
 {
-	return(bullet.rect.y + bullet.rect.height <= 0);
+	return(bullet.pos.y + bullet.texture.height <= 0);
 }
 }
