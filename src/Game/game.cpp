@@ -98,8 +98,9 @@ void deInit()
 
 void shoot()
 {
-	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_SPACE))
+	if (IsKeyPressed(KEY_SPACE) && !bullet.alive && ship.alive)
 	{
+		playShootSound();
 		bullet.alive = true;
 	}
 }
