@@ -28,6 +28,7 @@ void update()
 {
 	while (!WindowShouldClose())
 	{
+		updatePlayerShip(ship);
 		draw();
 	}
 }
