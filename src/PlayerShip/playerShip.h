@@ -10,6 +10,7 @@ struct PlayerShip
 	Vector2 pos;
 	Color color;
 	Texture2D texture;
+	int width;
 	float speed;
 	int lives;
 	bool alive;

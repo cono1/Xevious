@@ -2,8 +2,13 @@
 
 #include <iostream>
 
+#include "Animations/animation.h"
+
 namespace game
 {
+static Animation playerAnimation;
+static int totalSprites = 3;
+
 void moveLeft(PlayerShip& ship);
 void moveRight(PlayerShip& ship);
 void moveUp(PlayerShip& ship);
@@ -15,10 +20,13 @@ void initPlayerShip(PlayerShip& ship)
 	ship.initPos.y = 500;
 	ship.pos = ship.initPos;
 	ship.color = WHITE;
-	ship.texture = LoadTexture("res/tempPlayerShip.png");
+	ship.texture = LoadTexture("res/Player/playerSpriteSheet.png"); //https://www.gamedevmarket.net/asset/animated-emojis
+	ship.width = ship.texture.width / totalSprites;
 	ship.speed = 500;
 	ship.lives = 3;
 	ship.alive = true;
+
+	initAnimation(playerAnimation, static_cast<float>(ship.texture.width), static_cast<float>(ship.texture.height), totalSprites);
 }
 
 void updatePlayerShip(PlayerShip& ship)
@@ -40,17 +48,32 @@ void updatePlayerShip(PlayerShip& ship)
 			moveLeft(ship);
 		}
 
-		if (IsKeyDown(KEY_RIGHT) && ship.pos.x + ship.texture.width < GetScreenWidth())
+		if (IsKeyDown(KEY_RIGHT) && ship.pos.x + ship.width < GetScreenWidth())
 		{
 			moveRight(ship);
 		}
+
+		updateAnimation(playerAnimation, static_cast<float>(ship.texture.width));
 	}
 }
 
 void drawPlayerShip(PlayerShip ship)
 {
-	if(ship.alive)
-	DrawTextureV(ship.texture, ship.pos, ship.color);
+	if (ship.alive)
+	{
+		Rectangle dest = { ship.pos.x + ship.width / 2, ship.pos.y + ship.texture.height / 2,
+						   static_cast<float>(ship.texture.width / totalSprites),
+						   static_cast<float>(ship.texture.height) };
+
+		Vector2 origin = { static_cast<float>(ship.texture.width / totalSprites / 2),
+						   static_cast<float>(ship.texture.height / 2) };
+
+		DrawTexturePro(ship.texture, getFrameRect(playerAnimation), dest, origin, 0, ship.color);
+
+#ifdef _DEBUG
+		DrawRectangleLines(static_cast<int>(ship.pos.x), static_cast<int>(ship.pos.y), ship.width, ship.texture.height, ship.color);
+#endif
+	}
 }
 
 void deInitPlayerShip(PlayerShip& ship)

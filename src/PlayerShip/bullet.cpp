@@ -7,7 +7,8 @@ bool checkBulletScreenLimit(Bullet bullet);
 void initBullet(Bullet& bullet, PlayerShip ship)
 {
 	bullet.texture = LoadTexture("res/tempBullet.png");
-	bullet.pos = ship.pos;
+	bullet.pos.x = ship.pos.x + ship.width / 2;
+	bullet.pos.y = ship.pos.y;
 	bullet.alive = false;
 	bullet.speed = 500.f;
 	bullet.color = WHITE;
@@ -26,7 +27,7 @@ void updateBullet(Bullet& bullet, PlayerShip ship)
 	}
 	else
 	{
-		bullet.pos.x = ship.pos.x + ship.texture.width / 2;
+		bullet.pos.x = ship.pos.x + ship.width / 2;
 		bullet.pos.y = ship.pos.y;
 	}
 }
