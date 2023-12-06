@@ -176,6 +176,7 @@
     <ClCompile Include="src\Menu\menu.cpp" />
     <ClCompile Include="src\PlayerShip\bullet.cpp" />
     <ClCompile Include="src\PlayerShip\playerShip.cpp" />
+    <ClCompile Include="src\Screens\credits.cpp" />
     <ClCompile Include="src\Screens\rulesScreen.cpp" />
     <ClCompile Include="src\Screens\loseScreen.cpp" />
     <ClCompile Include="src\Sound\sound.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="src\Menu\menu.h" />
     <ClInclude Include="src\PlayerShip\bullet.h" />
     <ClInclude Include="src\PlayerShip\playerShip.h" />
+    <ClInclude Include="src\Screens\credits.h" />
     <ClInclude Include="src\Screens\rulesScreen.h" />
     <ClInclude Include="src\Screens\loseScreen.h" />
     <ClInclude Include="src\Sound\sound.h" />

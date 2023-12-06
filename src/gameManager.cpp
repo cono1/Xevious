@@ -8,6 +8,7 @@
 
 #include "Screens/loseScreen.h"
 #include "Screens/rulesScreen.h"
+#include "Screens/credits.h"
 
 namespace game
 {
@@ -80,12 +81,22 @@ void updateGameManager()
 				if (prevScreen == MENU) currentScreen = MENU;
 			}
 			BeginDrawing();
-			printBackButton(false, pauseSize);
 			ClearBackground(GOLD);
-			printCredits();
+			printBackButton(false, pauseSize);
+			printRules();
 			EndDrawing();
 			break;
 		case game::CREDITS:
+			if (isMouseHoverPause() && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+			{
+				if (prevScreen == PAUSE) currentScreen = PAUSE;
+				if (prevScreen == MENU) currentScreen = MENU;
+			}
+			BeginDrawing();
+			ClearBackground(GOLD);
+			printBackButton(false, pauseSize);
+			printCredits();
+			EndDrawing();
 			break;
 		case game::EXIT:
 			return;

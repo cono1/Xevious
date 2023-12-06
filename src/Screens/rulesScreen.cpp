@@ -10,7 +10,7 @@ static int fontSize;
 
 int getXPos(std::string text);
 
-void printCredits()
+void printRules()
 {
     Color textColor = WHITE;
     fontSize = 40;
