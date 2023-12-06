@@ -26,7 +26,7 @@ void updateBullet(Bullet& bullet, PlayerShip ship)
 	}
 	else
 	{
-		bullet.pos.x = ship.pos.x;
+		bullet.pos.x = ship.pos.x + ship.texture.width / 2;
 		bullet.pos.y = ship.pos.y;
 	}
 }
