@@ -1,14 +1,16 @@
 #include "enemy.h"
 
+#include "raylib.h"
+
 namespace game
 {
 bool checkEnemyScreenLimit(Enemy enemy);
 
-void initEnmey(Enemy& enemy)
+void initEnemy(Enemy& enemy)
 {
 	enemy.texture = LoadTexture("res/tempEnemyShip.png");
-	enemy.initPos.x = 500;
-	enemy.initPos.y = 10;
+	enemy.initPos.x = static_cast<float>(GetRandomValue(0, GetScreenWidth() - enemy.texture.width));
+	enemy.initPos.y = 5;
 	enemy.pos = enemy.initPos;
 	enemy.color = WHITE;
 	enemy.speed = 200;

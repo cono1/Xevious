@@ -14,7 +14,7 @@ struct Enemy
 	bool alive;
 };
 
-void initEnmey(Enemy& enemy);
+void initEnemy(Enemy& enemy);
 void updateEnemy(Enemy& enemy);
 void drawEnemy(Enemy& enemy);
 void deInitEnemy(Enemy& enemy);

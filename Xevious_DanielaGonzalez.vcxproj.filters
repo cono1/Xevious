@@ -11,6 +11,7 @@
     <ClCompile Include="src\Sound\sound.cpp" />
     <ClCompile Include="src\Menu\menu.cpp" />
     <ClCompile Include="src\gameManager.cpp" />
+    <ClCompile Include="src\Game\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PlayerShip\playerShip.h" />
@@ -22,5 +23,6 @@
     <ClInclude Include="src\Sound\sound.h" />
     <ClInclude Include="src\Menu\menu.h" />
     <ClInclude Include="src\gameManager.h" />
+    <ClInclude Include="src\Game\timer.h" />
   </ItemGroup>
 </Project>

@@ -1,19 +1,26 @@
 #include "game.h"
 
+#include <time.h>
+
 #include "PlayerShip/playerShip.h"
 #include "PlayerShip/bullet.h"
 #include "Enemy/enemy.h"
 #include "collisions.h"
 #include "Background/background.h"
 #include "Sound/sound.h"
+#include "timer.h"
 
 namespace game
 {
 const int maxBullets = 4;
+const int maxEnemies = 5;
+
+static Timer timer;
+static int waitTimeForNewEnemy = 1100;
 
 static PlayerShip ship;
 static Bullet bullets[maxBullets];
-static Enemy enemy;
+static Enemy enemies[maxEnemies];
 
 void updateGame();
 void updateGameObjects();
@@ -21,12 +28,22 @@ void shoot();
 
 void initGame()
 {
+	SetRandomSeed(static_cast<unsigned int>(time(NULL)));
+
+	startTimer(timer);
+
 	initPlayerShip(ship);
+
 	for (int i = 0; i < maxBullets; i++)
 	{
 		initBullet(bullets[i], ship);
 	}
-	initEnmey(enemy);
+
+	for (int i = 0; i < maxEnemies; i++)
+	{
+		initEnemy(enemies[i]);
+	}
+
 	initBackground();	
 }
 
@@ -34,18 +51,38 @@ void updateGame()
 {
 	updateGameObjects();
 
-	for (int i = 0; i < maxBullets; i++)
+	for (int i = 0; i < maxEnemies; i++)
 	{
-		if (checkCollisions(bullets[i].pos, bullets[i].texture, enemy.pos, enemy.texture) && bullets[i].alive)
+		for (int j = 0; j < maxBullets; j++)
 		{
-			enemy.alive = false;
+			if (checkCollisions(bullets[j].pos, bullets[j].texture, enemies[i].pos, enemies[i].texture)
+				&& bullets[j].alive && enemies[i].alive)
+			{
+				enemies[i].alive = false;
+				bullets[j].alive = false;
+			}
 		}
 	}
 
-	if (checkCollisions(ship.pos, ship.texture, enemy.pos, enemy.texture) && enemy.alive)
+	for (int i = 0; i < maxEnemies; i++)
 	{
-		ship.alive = false;
-		restartBackground();
+		if (checkCollisions(ship.pos, ship.texture, enemies[i].pos, enemies[i].texture) && enemies[i].alive)
+		{
+			ship.alive = false;
+			restartBackground();
+		}
+	}
+
+	stopTimer(timer);
+	for (int i = 0; i < maxEnemies; i++)
+	{
+		if (getTimeElapsed(timer) >= waitTimeForNewEnemy && !enemies[i].alive)
+		{
+			initEnemy(enemies[i]);
+			enemies[i].alive = true;
+			startTimer(timer);
+			break;
+		}
 	}
 }
 
@@ -60,13 +97,20 @@ void updateGameObjects()
 	}
 
 	shoot();
-	updateEnemy(enemy);
+	for (int i = 0; i < maxEnemies; i++)
+	{
+		updateEnemy(enemies[i]);
+	}
 }
 
 void drawGame()
 {
 	drawBackground();
-	drawEnemy(enemy);
+	for (int i = 0; i < maxEnemies; i++)
+	{
+		drawEnemy(enemies[i]);
+	}
+
 	for (int i = 0; i < maxBullets; i++)
 	{
 		drawBullet(bullets[i]);
@@ -77,7 +121,10 @@ void drawGame()
 void deInitGame()
 {
 	deInitPlayerShip(ship);
-	deInitEnemy(enemy);
+	for (int i = 0; i < maxEnemies; i++)
+	{
+		deInitEnemy(enemies[i]);
+	}
 	for (int i = 0; i < maxBullets; i++)
 	{
 		deInitBullet(bullets[i]);

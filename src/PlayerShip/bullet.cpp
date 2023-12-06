@@ -18,16 +18,16 @@ void updateBullet(Bullet& bullet, PlayerShip ship)
 	if (bullet.alive)
 	{
 		bullet.pos.y -= bullet.speed * GetFrameTime();
+	
+		if (checkBulletScreenLimit(bullet))
+		{
+			bullet.alive = false;
+		}
 	}
 	else
 	{
 		bullet.pos.x = ship.pos.x;
 		bullet.pos.y = ship.pos.y;
-	}
-
-	if (checkBulletScreenLimit(bullet))
-	{
-		bullet.alive = false;
 	}
 }
 	
