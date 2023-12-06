@@ -6,10 +6,11 @@ namespace game
 {
 struct Enemy
 {
+	Texture2D texture;
 	Vector2 initPos;
 	Vector2 pos;
 	Color color;
-	Texture2D texture;
+	int width;
 	float speed;
 	bool alive;
 };

@@ -14,6 +14,7 @@
     <ClCompile Include="src\Game\timer.cpp" />
     <ClCompile Include="src\Screens\loseScreen.cpp" />
     <ClCompile Include="src\Screens\rulesScreen.cpp" />
+    <ClCompile Include="src\Animations\animation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PlayerShip\playerShip.h" />
@@ -28,5 +29,6 @@
     <ClInclude Include="src\Game\timer.h" />
     <ClInclude Include="src\Screens\loseScreen.h" />
     <ClInclude Include="src\Screens\rulesScreen.h" />
+    <ClInclude Include="src\Animations\animation.h" />
   </ItemGroup>
 </Project>
