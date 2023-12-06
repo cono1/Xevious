@@ -139,7 +139,7 @@ void printBackButton(bool pause, int fontSize)
 	DrawRectangleGradientH(static_cast<int>(pauseRect.x - pauseRect.width / 2),
 		static_cast<int>(pauseRect.y - pauseRect.height / 2),
 		static_cast<int>(pauseRect.width),
-		static_cast<int>(pauseRect.height), YELLOW, ORANGE);
+		static_cast<int>(pauseRect.height), BLUE, DARKPURPLE);
 
 	if (pause)
 		DrawText("||", pauseRect.x, pauseRect.y - 10, fontSize, WHITE);

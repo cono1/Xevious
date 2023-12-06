@@ -5,11 +5,15 @@
 #include "Menu/menu.h"
 #include "Game/game.h"
 #include "Sound/sound.h"
+
 #include "Screens/loseScreen.h"
+#include "Screens/rulesScreen.h"
 
 namespace game
 {
 CurrentScreen currentScreen;
+static CurrentScreen prevScreen;
+
 bool restart = false;
 static bool closeGame = false;
 
@@ -47,10 +51,11 @@ void updateGameManager()
 	SetExitKey(NULL);
 
 	while (!WindowShouldClose() && !closeGame)
-	{
+	{		
 		switch (currentScreen)
 		{
 		case game::PLAY:
+			prevScreen = currentScreen;
 			playGameMusic();
 			UpdateMusicStream(getGameMusic());
 
@@ -69,6 +74,16 @@ void updateGameManager()
 			EndDrawing();
 			break;
 		case game::RULES:
+			if (isMouseHoverPause() && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+			{
+				if(prevScreen == PAUSE) currentScreen = PAUSE;
+				if (prevScreen == MENU) currentScreen = MENU;
+			}
+			BeginDrawing();
+			printBackButton(false, pauseSize);
+			ClearBackground(GOLD);
+			printCredits();
+			EndDrawing();
 			break;
 		case game::CREDITS:
 			break;
@@ -76,6 +91,7 @@ void updateGameManager()
 			return;
 			break;
 		case game::MENU:
+			prevScreen = currentScreen;
 			if (IsKeyPressed(KEY_ESCAPE))
 			{
 				closeGame = true;
@@ -87,6 +103,7 @@ void updateGameManager()
 			EndDrawing();
 			break;
 		case game::PAUSE:
+			prevScreen = currentScreen;
 			if (IsKeyPressed(KEY_ESCAPE))
 			{
 				closeGame = true;
