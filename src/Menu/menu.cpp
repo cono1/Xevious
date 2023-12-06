@@ -1,6 +1,7 @@
 #include "menu.h"
 
 #include <string>
+#include <iostream>
 
 #include <raylib.h>
 
@@ -13,7 +14,6 @@ static MenuRect pauseRect;
 
 void writeOnMenuSquare(std::string word, int pos, int fontSize);
 bool checkMenuInput(CurrentScreen currentSquare);
-bool checkCollision(MenuRect& menuRec, float initWidth, float maxWidth);
 
 void initMenu(const int screenWidth)
 {
@@ -112,21 +112,7 @@ void printMenu(std::string title, std::string firstOption, int titleSize, int op
 	}
 }
 
-void writeOnMenuSquare(std::string word, int pos, int fontSize)
-{
-	int xOffsetText = static_cast<int>(menuRect[pos].x) - static_cast<int>(MeasureText(word.c_str(), fontSize)) / 2;
-	int yOffsetText = static_cast<int>((menuRect[pos].height - fontSize / 2) / 2);
-
-	DrawText(word.c_str(), xOffsetText, menuRect[pos].y - yOffsetText, fontSize, WHITE);
-}
-
-bool checkMenuInput(CurrentScreen currentSquare)
-{
-	return (checkCollision(menuRect[currentSquare], menuRect[currentSquare].initWidth,
-		menuRect[currentSquare].maxWidth) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT));
-}
-
-bool checkCollision(MenuRect& menuRec, float initWidth, float maxWidth)
+bool checkCursorMenuCollision(MenuRect& menuRec, float initWidth, float maxWidth)
 {
 	int mouseX = static_cast<int>(GetMousePosition().x);
 	int mouseY = static_cast<int>(GetMousePosition().y);
@@ -163,6 +149,20 @@ void printBackButton(bool pause, int fontSize)
 
 bool isMouseHoverPause()
 {
-	return checkCollision(pauseRect, pauseRect.initWidth, pauseRect.maxWidth);
+	return checkCursorMenuCollision(pauseRect, pauseRect.initWidth, pauseRect.maxWidth);
+}
+
+void writeOnMenuSquare(std::string word, int pos, int fontSize)
+{
+	int xOffsetText = static_cast<int>(menuRect[pos].x) - static_cast<int>(MeasureText(word.c_str(), fontSize)) / 2;
+	int yOffsetText = static_cast<int>((menuRect[pos].height - fontSize / 2) / 2);
+
+	DrawText(word.c_str(), xOffsetText, menuRect[pos].y - yOffsetText, fontSize, WHITE);
+}
+
+bool checkMenuInput(CurrentScreen currentSquare)
+{
+	return (checkCursorMenuCollision(menuRect[currentSquare], menuRect[currentSquare].initWidth,
+		menuRect[currentSquare].maxWidth) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT));
 }
 }

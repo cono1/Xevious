@@ -5,10 +5,12 @@
 #include "Menu/menu.h"
 #include "Game/game.h"
 #include "Sound/sound.h"
+#include "Screens/loseScreen.h"
 
 namespace game
 {
 CurrentScreen currentScreen;
+bool restart = false;
 
 void initGameManager();
 void updateGameManager();
@@ -55,7 +57,7 @@ void updateGameManager()
 				currentScreen = PAUSE;
 			}
 
-			updateGame();
+			updateGame(currentScreen, restart);
 
 			BeginDrawing();
 			ClearBackground(RAYWHITE);
@@ -82,6 +84,12 @@ void updateGameManager()
 			BeginDrawing();
 			ClearBackground(GOLD);
 			printMenu("Paused", "resume", titleSize, optionsSize);
+			EndDrawing();
+			break;
+		case game::LOSE:
+			BeginDrawing();
+			ClearBackground(GOLD);
+			printLoseScreen(currentScreen, restart);
 			EndDrawing();
 			break;
 		default:

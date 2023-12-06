@@ -22,7 +22,6 @@ static PlayerShip ship;
 static Bullet bullets[maxBullets];
 static Enemy enemies[maxEnemies];
 
-void updateGame();
 void updateGameObjects();
 void shoot();
 
@@ -47,7 +46,7 @@ void initGame()
 	initBackground();	
 }
 
-void updateGame()
+void updateGame(CurrentScreen& currentScreen, bool& restart)
 {
 	updateGameObjects();
 
@@ -69,7 +68,10 @@ void updateGame()
 		if (checkCollisions(ship.pos, ship.texture, enemies[i].pos, enemies[i].texture) && enemies[i].alive)
 		{
 			ship.alive = false;
+			initEnemy(enemies[i]);
+			initPlayerShip(ship);
 			restartBackground();
+			currentScreen = LOSE;
 		}
 	}
 
@@ -82,6 +84,17 @@ void updateGame()
 			enemies[i].alive = true;
 			startTimer(timer);
 			break;
+		}
+	}
+
+	if (restart)
+	{
+		initPlayerShip(ship);
+		restartBackground();
+		restart = false;
+		for (int i = 0; i < maxEnemies; i++)
+		{
+			initEnemy(enemies[i]);		
 		}
 	}
 }

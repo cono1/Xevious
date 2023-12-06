@@ -12,6 +12,7 @@
     <ClCompile Include="src\Menu\menu.cpp" />
     <ClCompile Include="src\gameManager.cpp" />
     <ClCompile Include="src\Game\timer.cpp" />
+    <ClCompile Include="src\Screens\loseScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PlayerShip\playerShip.h" />
@@ -24,5 +25,6 @@
     <ClInclude Include="src\Menu\menu.h" />
     <ClInclude Include="src\gameManager.h" />
     <ClInclude Include="src\Game\timer.h" />
+    <ClInclude Include="src\Screens\loseScreen.h" />
   </ItemGroup>
 </Project>
