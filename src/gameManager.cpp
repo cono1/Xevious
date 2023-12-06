@@ -11,6 +11,7 @@ namespace game
 {
 CurrentScreen currentScreen;
 bool restart = false;
+static bool closeGame = false;
 
 void initGameManager();
 void updateGameManager();
@@ -43,7 +44,9 @@ void updateGameManager()
 	int optionsSize = 50;
 	int pauseSize = 20;
 
-	while (!WindowShouldClose())
+	SetExitKey(NULL);
+
+	while (!WindowShouldClose() && !closeGame)
 	{
 		switch (currentScreen)
 		{
@@ -73,6 +76,10 @@ void updateGameManager()
 			return;
 			break;
 		case game::MENU:
+			if (IsKeyPressed(KEY_ESCAPE))
+			{
+				closeGame = true;
+			}
 			updateMenu(currentScreen);
 			BeginDrawing();
 			ClearBackground(GOLD);
@@ -80,6 +87,10 @@ void updateGameManager()
 			EndDrawing();
 			break;
 		case game::PAUSE:
+			if (IsKeyPressed(KEY_ESCAPE))
+			{
+				closeGame = true;
+			}
 			updateMenu(currentScreen);
 			BeginDrawing();
 			ClearBackground(GOLD);

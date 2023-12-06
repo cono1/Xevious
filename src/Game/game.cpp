@@ -91,11 +91,16 @@ void updateGame(CurrentScreen& currentScreen, bool& restart)
 	{
 		initPlayerShip(ship);
 		restartBackground();
-		restart = false;
 		for (int i = 0; i < maxEnemies; i++)
 		{
 			initEnemy(enemies[i]);		
 		}
+		restart = false;
+	}
+
+	if (IsKeyPressed(KEY_ESCAPE))
+	{
+		currentScreen = PAUSE;
 	}
 }
 
