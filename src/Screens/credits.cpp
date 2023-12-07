@@ -15,17 +15,19 @@ int getXPosCredits(std::string text);
 
 void printCredits()
 {
-    const int total = 5;
+    const int total = 6;
 
     std::string texts[total] = { "Game developed by Daniela Gonzalez",
                                  "Player spritesheet by Snappery",
                                  "Enemies spritesheet by Fulas",
+                                 "Unkown Dungeon PixelArt Parallax by Arrie",
                                  "music 8-bit Gabber Piece by RutgerMuller",
                                  "Sci-fi Sounds laserSmall001 by Kenney" };
 
     std::string urls[total] = { "https://danui.itch.io",
                                  "https://www.gamedevmarket.net/asset/animated-emojis",
                                  "https://www.gamedevmarket.net/asset/mobs-creatures-animals",
+                                 "https://www.gamedevmarket.net/asset/unkown-dungeon-pixelart-parallax-background",
                                  "https://freesound.org/people/RutgerMuller/sounds/51241/",
                                  "https://kenney.nl/assets/sci-fi-sounds" };
 

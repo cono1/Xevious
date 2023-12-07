@@ -29,5 +29,6 @@ Avoid all the enemies that come from above and shoot them for more fun. If one e
 - Game developed by Daniela Gonzalez. [Check my work on itch.io](https://danui.itch.io).
 - Player spritesheet by Snappery. [Animated Emojis on GameDev Market](https://www.gamedevmarket.net/asset/animated-emojis).
 - Enemies spritesheet by Fulas. [Mobs, Creatures, Animals on GameDev Market](https://www.gamedevmarket.net/asset/mobs-creatures-animals).
+- Unkown Dungeon PixelArt Parallax Background by Arrie. [Find it on GameDev Market](https://www.gamedevmarket.net/asset/unkown-dungeon-pixelart-parallax-background)
 - Music (8-bit Gabber Piece) by RutgerMuller. [Listen on FreeSound](https://freesound.org/people/RutgerMuller/sounds/51241/).
 - Sci-fi Sounds (laserSmall001) by Kenney. [Explore Kenney's assets](https://kenney.nl/assets/sci-fi-sounds).
