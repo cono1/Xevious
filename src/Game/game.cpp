@@ -46,7 +46,7 @@ void initGame()
 	initBackground();	
 }
 
-void updateGame(CurrentScreen& currentScreen, bool& restart)
+void updateGame(CurrentScreen& currentScreen, bool& restart, int& score)
 {
 	updateGameObjects();
 
@@ -57,6 +57,7 @@ void updateGame(CurrentScreen& currentScreen, bool& restart)
 			if (checkCollisions(bullets[j].pos, bullets[j].texture.width, bullets[j].texture.height, enemies[i].pos, enemies[i].width, enemies[i].texture.height)
 				&& bullets[j].alive && enemies[i].alive)
 			{
+				score += 5;
 				enemies[i].alive = false;
 				bullets[j].alive = false;
 			}
@@ -89,6 +90,7 @@ void updateGame(CurrentScreen& currentScreen, bool& restart)
 
 	if (restart)
 	{
+		score = 0;
 		initPlayerShip(ship);
 		restartBackground();
 		for (int i = 0; i < maxEnemies; i++)

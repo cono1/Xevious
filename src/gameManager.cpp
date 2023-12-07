@@ -1,5 +1,7 @@
 #include "gameManager.h"
 
+#include <iostream>
+
 #include "raylib.h"
 
 #include "Menu/menu.h"
@@ -20,6 +22,8 @@ static bool closeGame = false;
 
 void initGameManager();
 void updateGameManager();
+
+void drawScore(int score);
 void deInitGameManager();
 
 void gameLoop()
@@ -48,6 +52,7 @@ void updateGameManager()
 	int titleSize = 80;
 	int optionsSize = 50;
 	int pauseSize = 20;
+	int score = 0;
 
 	SetExitKey(NULL);
 
@@ -66,11 +71,12 @@ void updateGameManager()
 				currentScreen = PAUSE;
 			}
 
-			updateGame(currentScreen, restart);
+			updateGame(currentScreen, restart, score);
 
 			BeginDrawing();
 			ClearBackground(RAYWHITE);
 			drawGame();
+			drawScore(score);
 			printBackButton(true, pauseSize);
 			EndDrawing();
 			break;
@@ -136,6 +142,20 @@ void updateGameManager()
 		}
 	}
 }
+
+void drawScore(int score)
+{
+	
+	Vector2 scoreTextPos;
+	int scoreSize = 30;
+	Color colorScore = WHITE;
+	scoreTextPos.x = static_cast<float>(GetScreenWidth()) - static_cast<float>((MeasureTextEx(GetFontDefault(), "SCORE:  000000", static_cast<float>(scoreSize), 0).x));
+	scoreTextPos.y = 10;
+
+	std::string scoreText = "Score: " + std::to_string(score);
+	DrawText(scoreText.c_str(), static_cast<int>(scoreTextPos.x), static_cast<int>(scoreTextPos.y), scoreSize, colorScore);
+}
+
 
 void deInitGameManager()
 {
