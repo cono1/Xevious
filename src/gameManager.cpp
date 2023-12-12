@@ -58,6 +58,7 @@ void updateGameManager()
 
 	while (!WindowShouldClose() && !closeGame)
 	{		
+		//update
 		switch (currentScreen)
 		{
 		case game::PLAY:
@@ -72,13 +73,6 @@ void updateGameManager()
 			}
 
 			updateGame(currentScreen, restart, score);
-
-			BeginDrawing();
-			ClearBackground(RAYWHITE);
-			drawGame();
-			drawScore(score);
-			printBackButton(true, pauseSize);
-			EndDrawing();
 			break;
 		case game::RULES:
 			if (isMouseHoverPause() && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -86,11 +80,6 @@ void updateGameManager()
 				if(prevScreen == PAUSE) currentScreen = PAUSE;
 				if (prevScreen == MENU) currentScreen = MENU;
 			}
-			BeginDrawing();
-			ClearBackground(GOLD);
-			printBackButton(false, pauseSize);
-			printRules();
-			EndDrawing();
 			break;
 		case game::CREDITS:
 			if (isMouseHoverPause() && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -98,11 +87,6 @@ void updateGameManager()
 				if (prevScreen == PAUSE) currentScreen = PAUSE;
 				if (prevScreen == MENU) currentScreen = MENU;
 			}
-			BeginDrawing();
-			ClearBackground(GOLD);
-			printBackButton(false, pauseSize);
-			printCredits();
-			EndDrawing();
 			break;
 		case game::EXIT:
 			return;
@@ -114,10 +98,6 @@ void updateGameManager()
 				closeGame = true;
 			}
 			updateMenu(currentScreen);
-			BeginDrawing();
-			ClearBackground(GOLD);
-			printMenu("Xevious", "play", titleSize, optionsSize);
-			EndDrawing();
 			break;
 		case game::PAUSE:
 			prevScreen = currentScreen;
@@ -126,20 +106,49 @@ void updateGameManager()
 				closeGame = true;
 			}
 			updateMenu(currentScreen);
-			BeginDrawing();
-			ClearBackground(GOLD);
-			printMenu("Paused", "resume", titleSize, optionsSize);
-			EndDrawing();
 			break;
 		case game::LOSE:
-			BeginDrawing();
-			ClearBackground(GOLD);
-			printLoseScreen(currentScreen, restart);
-			EndDrawing();
 			break;
 		default:
 			break;
 		}
+
+
+		//drawing
+		BeginDrawing();
+		ClearBackground(GOLD);
+
+		switch (currentScreen)
+		{
+		case game::PLAY:
+			drawGame();
+			drawScore(score);
+			printBackButton(true, pauseSize);
+			break;
+		case game::RULES:
+			printBackButton(false, pauseSize);
+			printRules();		
+			break;
+		case game::CREDITS:
+			printBackButton(false, pauseSize);
+			printCredits();
+			break;
+		case game::EXIT:
+			break;
+		case game::MENU:
+			printMenu("Xevious", "play", titleSize, optionsSize);
+			break;
+		case game::PAUSE:
+			printMenu("Paused", "resume", titleSize, optionsSize);
+			break;
+		case game::LOSE:
+			printLoseScreen(currentScreen, restart);
+			break;
+		default:
+			break;
+		}
+
+		EndDrawing();
 	}
 }
 
