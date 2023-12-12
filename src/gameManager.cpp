@@ -19,13 +19,19 @@ static CurrentScreen prevScreen;
 
 bool restart = false;
 static bool closeGame = false;
+static int score;
 
 void initGameManager();
 void updateGameManager();
 
+void updatePlayState();
+void updateMenuAndPauseStates();
+void drawPlayState(int pauseSize);
+void drawRulesState(int pauseSize);
+void drawCreditsState(int pauseSize);
 void checkGoBack();
 
-void drawScore(int score);
+void drawScore();
 void deInitGameManager();
 
 void gameLoop()
@@ -54,7 +60,7 @@ void updateGameManager()
 	int titleSize = 80;
 	int optionsSize = 50;
 	int pauseSize = 20;
-	int score = 0;
+	score = 0;
 
 	SetExitKey(NULL);
 
@@ -64,11 +70,7 @@ void updateGameManager()
 		switch (currentScreen)
 		{
 		case game::PLAY:
-			prevScreen = currentScreen;
-			playGameMusic();
-			UpdateMusicStream(getGameMusic());
-			checkGoBack();
-			updateGame(currentScreen, restart, score);
+			updatePlayState();
 			break;
 		case game::RULES:
 			checkGoBack();
@@ -80,27 +82,14 @@ void updateGameManager()
 			return;
 			break;
 		case game::MENU:
-			prevScreen = currentScreen;
-			if (IsKeyPressed(KEY_ESCAPE))
-			{
-				closeGame = true;
-			}
-			updateMenu(currentScreen);
-			break;
 		case game::PAUSE:
-			prevScreen = currentScreen;
-			if (IsKeyPressed(KEY_ESCAPE))
-			{
-				closeGame = true;
-			}
-			updateMenu(currentScreen);
+			updateMenuAndPauseStates();
 			break;
 		case game::LOSE:
 			break;
 		default:
 			break;
 		}
-
 
 		//drawing
 		BeginDrawing();
@@ -109,17 +98,13 @@ void updateGameManager()
 		switch (currentScreen)
 		{
 		case game::PLAY:
-			drawGame();
-			drawScore(score);
-			printBackButton(true, pauseSize);
+			drawPlayState(pauseSize);
 			break;
 		case game::RULES:
-			printBackButton(false, pauseSize);
-			printRules();		
+			drawRulesState(pauseSize);
 			break;
 		case game::CREDITS:
-			printBackButton(false, pauseSize);
-			printCredits();
+			drawCreditsState(pauseSize);
 			break;
 		case game::EXIT:
 			break;
@@ -139,6 +124,43 @@ void updateGameManager()
 		EndDrawing();
 	}
 }
+void updatePlayState()
+{
+	prevScreen = currentScreen;
+	playGameMusic();
+	UpdateMusicStream(getGameMusic());
+	checkGoBack();
+	updateGame(currentScreen, restart, score);
+}
+
+void updateMenuAndPauseStates()
+{
+	prevScreen = currentScreen;
+	if (IsKeyPressed(KEY_ESCAPE))
+	{
+		closeGame = true;
+	}
+	updateMenu(currentScreen);
+}
+
+void drawPlayState(int pauseSize)
+{
+	drawGame();
+	drawScore();
+	printBackButton(true, pauseSize);
+}
+
+void drawRulesState(int pauseSize)
+{
+	printBackButton(false, pauseSize);
+	printRules();
+}
+
+void drawCreditsState(int pauseSize)
+{
+	printBackButton(false, pauseSize);
+	printCredits();
+}
 
 void checkGoBack()
 {
@@ -149,9 +171,8 @@ void checkGoBack()
 	}
 }
 
-void drawScore(int score)
+void drawScore()
 {
-	
 	Vector2 scoreTextPos;
 	int scoreSize = 30;
 	Color colorScore = WHITE;
