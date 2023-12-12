@@ -40,7 +40,7 @@ void initMenu(const int screenWidth)
 
 void updateMenu(CurrentScreen& currentScreen)
 {
-	if (checkMenuInput(PLAY))
+	if (checkMenuInput(PLAY) || IsKeyPressed(KEY_ENTER))
 	{
 		currentScreen = PLAY;
 	}
@@ -64,27 +64,6 @@ void updateMenu(CurrentScreen& currentScreen)
 	{
 		currentScreen = EXIT;
 	}
-}
-
-void updateMenu(CurrentScreen& currentScreen, bool& playAgain)
-{
-	if (checkMenuInput(PLAY))
-	{
-		currentScreen = PLAY;
-		playAgain = true;
-	}
-
-	if (checkMenuInput(PAUSE))
-		currentScreen = PAUSE;
-
-	if (checkMenuInput(RULES))
-		currentScreen = RULES;
-
-	if (checkMenuInput(CREDITS))
-		currentScreen = CREDITS;
-
-	if (checkMenuInput(EXIT))
-		currentScreen = EXIT;
 }
 
 void printMenu(std::string title, std::string firstOption, int titleSize, int optionsSize)

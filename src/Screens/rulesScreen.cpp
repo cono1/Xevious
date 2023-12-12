@@ -20,12 +20,14 @@ void printRules()
     std::string text3 = "Press SPACE to shoot down the enemies";
     std::string text4 = "Avoid enemy collisions to stay alive";
     std::string text5 = "Press ESC to pause the game";
+    std::string text6 = "Press ENTER to play, resume or play again";
 
     DrawText(text1.c_str(), getXPos(text1), 70, fontSize, textColor);
     DrawText(text2.c_str(), getXPos(text2), 210, fontSize, textColor);
     DrawText(text3.c_str(), getXPos(text3), 310, fontSize, textColor);
     DrawText(text4.c_str(), getXPos(text4), 410, fontSize, textColor);
     DrawText(text5.c_str(), getXPos(text5), 510, fontSize, textColor);
+    DrawText(text6.c_str(), getXPos(text6), 610, fontSize, textColor);
 }
 
 int getXPos(std::string text)

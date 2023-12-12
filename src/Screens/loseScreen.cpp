@@ -64,7 +64,7 @@ void updateOptions(CurrentScreen& currentScreen, bool& restart)
 		currentScreen = MENU;
 	}
 
-	if (checkCursorMenuCollision(playAgain, playAgain.initWidth, playAgain.maxWidth) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	if (checkCursorMenuCollision(playAgain, playAgain.initWidth, playAgain.maxWidth) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_ENTER))
 	{
 		restart = true;
 		currentScreen = PLAY;
