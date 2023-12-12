@@ -23,6 +23,8 @@ static bool closeGame = false;
 void initGameManager();
 void updateGameManager();
 
+void checkGoBack();
+
 void drawScore(int score);
 void deInitGameManager();
 
@@ -65,28 +67,14 @@ void updateGameManager()
 			prevScreen = currentScreen;
 			playGameMusic();
 			UpdateMusicStream(getGameMusic());
-
-			if (isMouseHoverPause() && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-			{
-				PauseMusicStream(getGameMusic());
-				currentScreen = PAUSE;
-			}
-
+			checkGoBack();
 			updateGame(currentScreen, restart, score);
 			break;
 		case game::RULES:
-			if (isMouseHoverPause() && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-			{
-				if(prevScreen == PAUSE) currentScreen = PAUSE;
-				if (prevScreen == MENU) currentScreen = MENU;
-			}
+			checkGoBack();
 			break;
 		case game::CREDITS:
-			if (isMouseHoverPause() && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-			{
-				if (prevScreen == PAUSE) currentScreen = PAUSE;
-				if (prevScreen == MENU) currentScreen = MENU;
-			}
+			checkGoBack();
 			break;
 		case game::EXIT:
 			return;
@@ -149,6 +137,15 @@ void updateGameManager()
 		}
 
 		EndDrawing();
+	}
+}
+
+void checkGoBack()
+{
+	if (isMouseHoverPause() && IsMouseButtonPressed(MOUSE_LEFT_BUTTON) || IsKeyPressed(KEY_ESCAPE))
+	{
+		if (prevScreen == PAUSE || prevScreen == PLAY) currentScreen = PAUSE;
+		if (prevScreen == MENU) currentScreen = MENU;
 	}
 }
 
