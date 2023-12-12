@@ -93,6 +93,10 @@ void updateGame(CurrentScreen& currentScreen, bool& restart, int& score)
 		score = 0;
 		initPlayerShip(ship);
 		restartBackground();
+		for (int i = 0; i < maxBullets; i++)
+		{
+			bullets[i].alive = false;
+		}
 		for (int i = 0; i < maxEnemies; i++)
 		{
 			initEnemy(enemies[i]);		
