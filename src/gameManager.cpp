@@ -142,7 +142,7 @@ void updateGameManager()
 			printMenu("Paused", "resume", titleSize, optionsSize);
 			break;
 		case game::LOSE:
-			printLoseScreen(currentScreen, restart);
+			printLoseScreen(currentScreen, restart, score);
 			break;
 		default:
 			break;

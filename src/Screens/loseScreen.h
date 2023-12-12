@@ -4,5 +4,5 @@
 
 namespace game
 {
-void printLoseScreen(CurrentScreen& currentScreen, bool& restart);
+void printLoseScreen(CurrentScreen& currentScreen, bool& restart, int score);
 }

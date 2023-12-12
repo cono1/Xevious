@@ -15,14 +15,22 @@ void initOptions();
 void updateOptions(CurrentScreen& currentScreen, bool& restart);
 void printOptions();
 
-void printLoseScreen(CurrentScreen& currentScreen, bool& restart)
+void printLoseScreen(CurrentScreen& currentScreen, bool& restart, int score)
 {
 	std::string loseText = "You lose";
 	int loseTextSize = 80;
 	int loseTextX = (GetScreenWidth() - MeasureText(loseText.c_str(), loseTextSize)) / 2;
 	int loseTextY = 200;
 
+	std::string scoreText = "Score: " + std::to_string(score);
+	Vector2 scoreTextPos;
+	int scoreSize = 40;
+	Color colorScore = WHITE;
+	scoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(scoreText.c_str(), scoreSize)) / 2;
+	scoreTextPos.y = static_cast<float>(loseTextY) + 80;
+
 	DrawText(TextFormat(loseText.c_str()), loseTextX, loseTextY, loseTextSize, WHITE);
+	DrawText(scoreText.c_str(), static_cast<int>(scoreTextPos.x), static_cast<int>(scoreTextPos.y), scoreSize, colorScore);
 
 	initOptions();
 	updateOptions(currentScreen, restart);
@@ -36,7 +44,7 @@ void initOptions()
 	playAgain.width = 350;
 	playAgain.height = 80;
 	playAgain.x = GetScreenWidth() / 2;
-	playAgain.y = 390;
+	playAgain.y = 400;
 	playAgain.initWidth = playAgain.width;
 	playAgain.maxWidth = playAgain.width + 50;
 
