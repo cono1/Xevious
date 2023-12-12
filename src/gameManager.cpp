@@ -53,6 +53,7 @@ void initGameManager()
 	SetMusicVolume(getGameMusic(), 0.2f);
 	initGame();
 	initMenu(screenWidth);
+	initCredits();
 }
 
 void updateGameManager()
@@ -76,6 +77,7 @@ void updateGameManager()
 			checkGoBack();
 			break;
 		case game::CREDITS:
+			updateCredits();
 			checkGoBack();
 			break;
 		case game::EXIT:
