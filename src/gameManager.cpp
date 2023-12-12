@@ -55,6 +55,7 @@ void initGameManager()
 	initMenu(screenWidth);
 	initCredits();
 	initRules();
+	initLoseScreen();
 }
 
 void updateGameManager()
@@ -89,6 +90,7 @@ void updateGameManager()
 			updateMenuAndPauseStates();
 			break;
 		case game::LOSE:
+			updateLoseScreen(currentScreen, restart, score);
 			break;
 		default:
 			break;
@@ -118,7 +120,7 @@ void updateGameManager()
 			printMenu("Paused", "resume", titleSize, optionsSize);
 			break;
 		case game::LOSE:
-			printLoseScreen(currentScreen, restart, score);
+			printLoseScreen();
 			break;
 		default:
 			break;
