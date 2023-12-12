@@ -20,6 +20,7 @@ static CurrentScreen prevScreen;
 bool restart = false;
 static bool closeGame = false;
 static int score;
+static int hiScore;
 
 void initGameManager();
 void updateGameManager();
@@ -64,6 +65,7 @@ void updateGameManager()
 	int optionsSize = 50;
 	int pauseSize = 20;
 	score = 0;
+	hiScore = 0;
 
 	SetExitKey(NULL);
 
@@ -90,7 +92,7 @@ void updateGameManager()
 			updateMenuAndPauseStates();
 			break;
 		case game::LOSE:
-			updateLoseScreen(currentScreen, restart, score);
+			updateLoseScreen(currentScreen, restart, score, hiScore);
 			break;
 		default:
 			break;
@@ -129,6 +131,7 @@ void updateGameManager()
 		EndDrawing();
 	}
 }
+
 void updatePlayState()
 {
 	prevScreen = currentScreen;
@@ -136,6 +139,10 @@ void updatePlayState()
 	UpdateMusicStream(getGameMusic());
 	checkGoBack();
 	updateGame(currentScreen, restart, score);
+	if (score >= hiScore)
+	{
+		hiScore = score;
+	}
 }
 
 void updateMenuAndPauseStates()

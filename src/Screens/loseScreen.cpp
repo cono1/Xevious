@@ -22,6 +22,8 @@ static int mainMenuTextY;
 
 std::string scoreText;
 Vector2 scoreTextPos;
+std::string hiScoreText;
+Vector2 hiScoreTextPos;
 int scoreSize;
 Color colorScore;
 
@@ -39,16 +41,20 @@ void initLoseScreen()
 
 	scoreSize = 40;
 	colorScore = WHITE;
-	scoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(scoreText.c_str(), scoreSize)) / 2;
-	scoreTextPos.y = static_cast<float>(loseTextY) + 80;
+	hiScoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(scoreText.c_str(), scoreSize)) / 2;
+	hiScoreTextPos.y = static_cast<float>(loseTextY) + 95;
+	scoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(hiScoreText.c_str(), scoreSize)) / 2;
+	scoreTextPos.y = static_cast<float>(hiScoreTextPos.y) + 50;
 
 	initOptions();
 }
 
-void updateLoseScreen(CurrentScreen& currentScreen, bool& restart, int score)
+void updateLoseScreen(CurrentScreen& currentScreen, bool& restart, int score, int hiScore)
 {
 	scoreText = "Score: " + std::to_string(score); 
 	scoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(scoreText.c_str(), scoreSize)) / 2;
+	hiScoreText = "High score: " + std::to_string(hiScore);
+	hiScoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(hiScoreText.c_str(), scoreSize)) / 2;
 
 	if (checkCursorMenuCollision(mainMenu, mainMenu.initWidth, mainMenu.maxWidth) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 	{
@@ -67,6 +73,7 @@ void printLoseScreen()
 {
 	DrawText(TextFormat(loseText.c_str()), loseTextX, loseTextY, loseTextSize, WHITE);
 	DrawText(scoreText.c_str(), static_cast<int>(scoreTextPos.x), static_cast<int>(scoreTextPos.y), scoreSize, colorScore);
+	DrawText(hiScoreText.c_str(), static_cast<int>(hiScoreTextPos.x), static_cast<int>(hiScoreTextPos.y), scoreSize, colorScore);
 
 	printOptions();
 }
@@ -78,14 +85,14 @@ void initOptions()
 	playAgain.width = 350;
 	playAgain.height = 80;
 	playAgain.x = GetScreenWidth() / 2;
-	playAgain.y = 400;
+	playAgain.y = 460;
 	playAgain.initWidth = playAgain.width;
 	playAgain.maxWidth = playAgain.width + 50;
 
 	mainMenu.width = 350;
 	mainMenu.height = 80;
 	mainMenu.x = GetScreenWidth() / 2;
-	mainMenu.y = 550;
+	mainMenu.y = 570;
 	mainMenu.initWidth = mainMenu.width;
 	mainMenu.maxWidth = mainMenu.width + 50;
 }

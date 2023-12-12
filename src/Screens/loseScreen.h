@@ -5,6 +5,6 @@
 namespace game
 {
 void initLoseScreen();
-void updateLoseScreen(CurrentScreen& currentScreen, bool& restart, int score);
+void updateLoseScreen(CurrentScreen& currentScreen, bool& restart, int score, int hiScore);
 void printLoseScreen();
 }
