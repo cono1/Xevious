@@ -17,7 +17,7 @@ void printOptions();
 
 void printLoseScreen(CurrentScreen& currentScreen, bool& restart)
 {
-	std::string loseText = "You lost";
+	std::string loseText = "You lose";
 	int loseTextSize = 80;
 	int loseTextX = (GetScreenWidth() - MeasureText(loseText.c_str(), loseTextSize)) / 2;
 	int loseTextY = 200;
