@@ -2,5 +2,6 @@
 
 namespace game
 {
+void initRules();
 void printRules();
 }

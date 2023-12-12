@@ -6,22 +6,33 @@
 
 namespace game
 {
+static std::string text1;
+static std::string text2;
+static std::string text3;
+static std::string text4;
+static std::string text5;
+static std::string text6;
+
 static int fontSize;
+static Color textColor;
 
 int getXPos(std::string text);
 
-void printRules()
+void initRules()
 {
-    Color textColor = WHITE;
     fontSize = 40;
+    textColor = WHITE;
 
-    std::string text1 = "WELCOME TO XEVIOUS!";
-    std::string text2 = "Use ARROW keys to move your ship";
-    std::string text3 = "Press SPACE to shoot down the enemies";
-    std::string text4 = "Avoid enemy collisions to stay alive";
-    std::string text5 = "Press ESC to pause the game";
-    std::string text6 = "Press ENTER to play, resume or play again";
+    text1 = "WELCOME TO XEVIOUS!";
+    text2 = "Use ARROW keys to move your ship";
+    text3 = "Press SPACE to shoot down the enemies";
+    text4 = "Avoid enemy collisions to stay alive";
+    text5 = "Press ESC to pause the game";
+    text6 = "Press ENTER to play, resume or play again";
+}
 
+void printRules()
+{    
     DrawText(text1.c_str(), getXPos(text1), 70, fontSize, textColor);
     DrawText(text2.c_str(), getXPos(text2), 210, fontSize, textColor);
     DrawText(text3.c_str(), getXPos(text3), 310, fontSize, textColor);

@@ -54,6 +54,7 @@ void initGameManager()
 	initGame();
 	initMenu(screenWidth);
 	initCredits();
+	initRules();
 }
 
 void updateGameManager()
