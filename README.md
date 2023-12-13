@@ -18,7 +18,7 @@ Avoid all the enemies that come from above and shoot them for more fun. If one e
 ### If you just want to play the game:
 
 1. You need a C++ compiler (e.g. Visual Studio).
-2. Go to [this link](https://danui.itch.io/xevious) and download the executable from there.
+2. Go to [this link](https://danui.itch.io/xyphoria) and download the executable from there.
 
 ### If you want to access the whole code:
 
