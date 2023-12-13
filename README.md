@@ -1,6 +1,6 @@
 
 # Welcome to Xyphoria
-
+![](<res/Xyphoria_DanielaGonzalez.png>)
 *Xyphoria* is a simple remake of the original "Xevious" Namco game.
 
 ## Goal
