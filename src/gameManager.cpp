@@ -49,7 +49,7 @@ void initGameManager()
 
 	currentScreen = MENU;
 	initAudio();
-	SetMusicVolume(getGameMusic(), 0.2f);
+	SetMusicVolume(getGameMusic(), 0.5f);
 	initGame();
 	initMenu(screenWidth);
 	initCredits();
@@ -141,6 +141,8 @@ void updatePlayState()
 
 void updateMenuAndPauseStates()
 {
+	playMenuMusic();
+	UpdateMusicStream(getMenuMusic());
 	prevScreen = currentScreen;
 	if (IsKeyPressed(KEY_ESCAPE))
 	{

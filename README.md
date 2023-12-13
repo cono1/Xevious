@@ -32,3 +32,4 @@ Avoid all the enemies that come from above and shoot them for more fun. If one e
 - Unkown Dungeon PixelArt Parallax Background by Arrie. [Find it on GameDev Market](https://www.gamedevmarket.net/asset/unkown-dungeon-pixelart-parallax-background)
 - Music (8-bit Gabber Piece) by RutgerMuller. [Listen on FreeSound](https://freesound.org/people/RutgerMuller/sounds/51241/).
 - Sci-fi Sounds (laserSmall001) by Kenney. [Explore Kenney's assets](https://kenney.nl/assets/sci-fi-sounds).
+- Menu music by Pixabay. [Check out pixabay music](https://pixabay.com/sound-effects/026491-pixel-song-8-72675/).

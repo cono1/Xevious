@@ -6,7 +6,7 @@
 
 namespace game
 {
-static const int total = 6;
+static const int total = 7;
 static std::string texts[total];
 static std::string urls[total];
 static Vector2 textPositions[total];
@@ -26,6 +26,7 @@ void initCredits()
     texts[3] = "Unkown Dungeon PixelArt Parallax by Arrie";
     texts[4] = "music 8-bit Gabber Piece by RutgerMuller";
     texts[5] = "Sci-fi Sounds laserSmall001 by Kenney";
+    texts[6] = "Menu music by Pixabay";
 
     urls[0] = "https://danui.itch.io";
     urls[1] = "https://www.gamedevmarket.net/asset/animated-emojis";
@@ -33,6 +34,7 @@ void initCredits()
     urls[3] = "https://www.gamedevmarket.net/asset/unkown-dungeon-pixelart-parallax-background";
     urls[4] = "https://freesound.org/people/RutgerMuller/sounds/51241/";
     urls[5] = "https://kenney.nl/assets/sci-fi-sounds";
+    urls[6] = "https://pixabay.com/sound-effects/026491-pixel-song-8-72675/";
 
     for (int i = 0; i < total; i++)
     {
