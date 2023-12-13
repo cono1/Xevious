@@ -45,7 +45,7 @@ void initGameManager()
 	const int screenWidth = 1024;
 	const int screenHeight = 768;
 
-	InitWindow(screenWidth, screenHeight, "Xevious_DanielaGonzalez");
+	InitWindow(screenWidth, screenHeight, "Xyphoria_DanielaGonzalez");
 
 	currentScreen = MENU;
 	initAudio();
@@ -113,7 +113,7 @@ void updateGameManager()
 		case game::EXIT:
 			break;
 		case game::MENU:
-			printMenu("Xevious", "play", titleSize, optionsSize);
+			printMenu("Xyphoria", "play", titleSize, optionsSize);
 			break;
 		case game::PAUSE:
 			printMenu("Paused", "resume", titleSize, optionsSize);

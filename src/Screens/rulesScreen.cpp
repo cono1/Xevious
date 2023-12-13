@@ -23,7 +23,7 @@ void initRules()
     fontSize = 40;
     textColor = WHITE;
 
-    text1 = "WELCOME TO XEVIOUS!";
+    text1 = "WELCOME TO XYPHORIA!";
     text2 = "Use ARROW keys to move your ship";
     text3 = "Press SPACE to shoot down the enemies";
     text4 = "Avoid enemy collisions to stay alive";

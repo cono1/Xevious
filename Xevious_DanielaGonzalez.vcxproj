@@ -24,6 +24,7 @@
     <ProjectGuid>{886df8f8-0bb8-45af-a49e-5558377e94f8}</ProjectGuid>
     <RootNamespace>XeviousDanielaGonzalez</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Xyphoria_DanielaGonzalez</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

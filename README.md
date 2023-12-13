@@ -1,7 +1,7 @@
 
-# Welcome to Xevious
+# Welcome to Xyphoria
 
-*Xevious* is a simple remake of the original Namco game.
+*Xyphoria* is a simple remake of the original "Xevious" Namco game.
 
 ## Goal
 
