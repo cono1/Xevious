@@ -4,6 +4,8 @@
 
 #include "raylib.h"
 
+#include "Game/score.h"
+
 namespace game
 {
 static MenuRect playAgain;
@@ -20,12 +22,15 @@ static int playAgainTextY;
 static int mainMenuTextX;
 static int mainMenuTextY;
 
-std::string scoreText;
-Vector2 scoreTextPos;
-std::string hiScoreText;
-Vector2 hiScoreTextPos;
-int scoreSize;
-Color colorScore;
+static std::string scoreText;
+static Vector2 scoreTextPos;
+static std::string hiScoreText;
+static Vector2 hiScoreTextPos;
+static std::string globalScoreText;
+static Vector2 globalScoreTextPos;
+
+static int scoreSize;
+static Color colorScore;
 
 static int optionsSize = 40;
 
@@ -35,26 +40,30 @@ void printOptions();
 void initLoseScreen()
 {
 	loseText = "You lose";
-	loseTextSize = 80;
+	loseTextSize = 90;
 	loseTextX = (GetScreenWidth() - MeasureText(loseText.c_str(), loseTextSize)) / 2;
-	loseTextY = 200;
+	loseTextY = 150;
 
 	scoreSize = 40;
 	colorScore = WHITE;
+	globalScoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(scoreText.c_str(), scoreSize)) / 2;
+	globalScoreTextPos.y = static_cast<float>(loseTextY) + 110;
 	hiScoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(scoreText.c_str(), scoreSize)) / 2;
-	hiScoreTextPos.y = static_cast<float>(loseTextY) + 95;
+	hiScoreTextPos.y = static_cast<float>(globalScoreTextPos.y) + 50;
 	scoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(hiScoreText.c_str(), scoreSize)) / 2;
 	scoreTextPos.y = static_cast<float>(hiScoreTextPos.y) + 50;
 
 	initOptions();
 }
 
-void updateLoseScreen(CurrentScreen& currentScreen, bool& restart, int score, int hiScore)
+void updateLoseScreen(CurrentScreen& currentScreen, bool& restart)
 {
-	scoreText = "Score: " + std::to_string(score); 
+	scoreText = "Score: " + std::to_string(getScore()); 
 	scoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(scoreText.c_str(), scoreSize)) / 2;
-	hiScoreText = "High score: " + std::to_string(hiScore);
+	hiScoreText = "High score: " + std::to_string(getHiScore());
 	hiScoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(hiScoreText.c_str(), scoreSize)) / 2;
+	globalScoreText = "Global score: " + std::to_string(getGlobalScore());
+	globalScoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(globalScoreText.c_str(), scoreSize)) / 2;
 
 	if (checkCursorMenuCollision(mainMenu, mainMenu.initWidth, mainMenu.maxWidth) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 	{
@@ -71,9 +80,10 @@ void updateLoseScreen(CurrentScreen& currentScreen, bool& restart, int score, in
 
 void printLoseScreen()
 {
-	DrawText(TextFormat(loseText.c_str()), loseTextX, loseTextY, loseTextSize, WHITE);
+	DrawText(TextFormat(loseText.c_str()), loseTextX, loseTextY, loseTextSize, DARKPURPLE);
 	DrawText(scoreText.c_str(), static_cast<int>(scoreTextPos.x), static_cast<int>(scoreTextPos.y), scoreSize, colorScore);
 	DrawText(hiScoreText.c_str(), static_cast<int>(hiScoreTextPos.x), static_cast<int>(hiScoreTextPos.y), scoreSize, colorScore);
+	DrawText(globalScoreText.c_str(), static_cast<int>(globalScoreTextPos.x), static_cast<int>(globalScoreTextPos.y), scoreSize, colorScore);
 
 	printOptions();
 }
@@ -85,14 +95,14 @@ void initOptions()
 	playAgain.width = 350;
 	playAgain.height = 80;
 	playAgain.x = GetScreenWidth() / 2;
-	playAgain.y = 460;
+	playAgain.y = 470;
 	playAgain.initWidth = playAgain.width;
 	playAgain.maxWidth = playAgain.width + 50;
 
 	mainMenu.width = 350;
 	mainMenu.height = 80;
 	mainMenu.x = GetScreenWidth() / 2;
-	mainMenu.y = 570;
+	mainMenu.y = 580;
 	mainMenu.initWidth = mainMenu.width;
 	mainMenu.maxWidth = mainMenu.width + 50;
 }

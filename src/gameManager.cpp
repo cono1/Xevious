@@ -6,6 +6,7 @@
 
 #include "Menu/menu.h"
 #include "Game/game.h"
+#include "Game/score.h"
 #include "Sound/sound.h"
 
 #include "Screens/loseScreen.h"
@@ -19,8 +20,6 @@ static CurrentScreen prevScreen;
 
 bool restart = false;
 static bool closeGame = false;
-static int score;
-static int hiScore;
 
 void initGameManager();
 void updateGameManager();
@@ -32,7 +31,6 @@ void drawRulesState(int pauseSize);
 void drawCreditsState(int pauseSize);
 void checkGoBack();
 
-void drawScore();
 void deInitGameManager();
 
 void gameLoop()
@@ -57,6 +55,7 @@ void initGameManager()
 	initCredits();
 	initRules();
 	initLoseScreen();
+	initScore();
 }
 
 void updateGameManager()
@@ -64,8 +63,6 @@ void updateGameManager()
 	int titleSize = 80;
 	int optionsSize = 50;
 	int pauseSize = 20;
-	score = 0;
-	hiScore = 0;
 
 	SetExitKey(NULL);
 
@@ -92,7 +89,7 @@ void updateGameManager()
 			updateMenuAndPauseStates();
 			break;
 		case game::LOSE:
-			updateLoseScreen(currentScreen, restart, score, hiScore);
+			updateLoseScreen(currentScreen, restart);
 			break;
 		default:
 			break;
@@ -138,11 +135,8 @@ void updatePlayState()
 	playGameMusic();
 	UpdateMusicStream(getGameMusic());
 	checkGoBack();
-	updateGame(currentScreen, restart, score);
-	if (score >= hiScore)
-	{
-		hiScore = score;
-	}
+	updateGame(currentScreen, restart);
+	updateScore();
 }
 
 void updateMenuAndPauseStates()
@@ -182,19 +176,6 @@ void checkGoBack()
 		if (prevScreen == MENU) currentScreen = MENU;
 	}
 }
-
-void drawScore()
-{
-	Vector2 scoreTextPos;
-	int scoreSize = 30;
-	Color colorScore = WHITE;
-	scoreTextPos.x = static_cast<float>(GetScreenWidth()) - static_cast<float>((MeasureTextEx(GetFontDefault(), "SCORE:  000000", static_cast<float>(scoreSize), 0).x));
-	scoreTextPos.y = 10;
-
-	std::string scoreText = "Score: " + std::to_string(score);
-	DrawText(scoreText.c_str(), static_cast<int>(scoreTextPos.x), static_cast<int>(scoreTextPos.y), scoreSize, colorScore);
-}
-
 
 void deInitGameManager()
 {

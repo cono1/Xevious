@@ -16,6 +16,7 @@
     <ClCompile Include="src\Screens\rulesScreen.cpp" />
     <ClCompile Include="src\Animations\animation.cpp" />
     <ClCompile Include="src\Screens\credits.cpp" />
+    <ClCompile Include="src\Game\score.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PlayerShip\playerShip.h" />
@@ -32,5 +33,6 @@
     <ClInclude Include="src\Screens\rulesScreen.h" />
     <ClInclude Include="src\Animations\animation.h" />
     <ClInclude Include="src\Screens\credits.h" />
+    <ClInclude Include="src\Game\score.h" />
   </ItemGroup>
 </Project>

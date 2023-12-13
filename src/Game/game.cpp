@@ -9,6 +9,7 @@
 #include "Background/background.h"
 #include "Sound/sound.h"
 #include "timer.h"
+#include "score.h"
 
 namespace game
 {
@@ -46,7 +47,7 @@ void initGame()
 	initBackground();	
 }
 
-void updateGame(CurrentScreen& currentScreen, bool& restart, int& score)
+void updateGame(CurrentScreen& currentScreen, bool& restart)
 {
 	updateGameObjects();
 
@@ -57,7 +58,7 @@ void updateGame(CurrentScreen& currentScreen, bool& restart, int& score)
 			if (checkCollisions(bullets[j].pos, bullets[j].texture.width, bullets[j].texture.height, enemies[i].pos, enemies[i].width, enemies[i].texture.height)
 				&& bullets[j].alive && enemies[i].alive)
 			{
-				score += 5;
+				addScore();
 				enemies[i].alive = false;
 				bullets[j].alive = false;
 			}
@@ -90,7 +91,7 @@ void updateGame(CurrentScreen& currentScreen, bool& restart, int& score)
 
 	if (restart)
 	{
-		score = 0;
+		resetScore();
 		initPlayerShip(ship);
 		restartBackground();
 		for (int i = 0; i < maxBullets; i++)

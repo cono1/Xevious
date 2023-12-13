@@ -5,7 +5,7 @@
 namespace game
 {
 void initGame();
-void updateGame(CurrentScreen& currentScreen, bool& restart, int& score);
+void updateGame(CurrentScreen& currentScreen, bool& restart);
 void drawGame();
 void deInitGame();
 }

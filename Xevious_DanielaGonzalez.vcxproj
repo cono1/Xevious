@@ -106,8 +106,13 @@
       <AdditionalDependencies>raylib.lib; winmm.lib; kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>"$(SolutionDir)utils\batch.bat" "$(SolutionDir)res" "$(OutDir)res"</Command>
+      <Command>"$(SolutionDir)utils\batch.bat" "$(SolutionDir)res" "$(OutDir)res"
+</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -130,8 +135,13 @@
       <AdditionalDependencies>raylib.lib; winmm.lib; kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>"$(SolutionDir)utils\batch.bat" "$(SolutionDir)res" "$(OutDir)res"</Command>
+      <Command>"$(SolutionDir)utils\batch.bat" "$(SolutionDir)res" "$(OutDir)res"
+</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -149,8 +159,13 @@
       <AdditionalDependencies>raylib.lib; winmm.lib; kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>"$(SolutionDir)utils\batch.bat" "$(SolutionDir)res" "$(OutDir)res"</Command>
+      <Command>"$(SolutionDir)utils\batch.bat" "$(SolutionDir)res" "$(OutDir)res"
+</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -173,8 +188,13 @@
       <AdditionalDependencies>raylib.lib; winmm.lib; kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>"$(SolutionDir)utils\batch.bat" "$(SolutionDir)res" "$(OutDir)res"</Command>
+      <Command>"$(SolutionDir)utils\batch.bat" "$(SolutionDir)res" "$(OutDir)res"
+</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Animations\animation.cpp" />
@@ -183,6 +203,7 @@
     <ClCompile Include="src\gameManager.cpp" />
     <ClCompile Include="src\Game\collisions.cpp" />
     <ClCompile Include="src\Game\game.cpp" />
+    <ClCompile Include="src\Game\score.cpp" />
     <ClCompile Include="src\Game\timer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Menu\menu.cpp" />
@@ -200,6 +221,7 @@
     <ClInclude Include="src\gameManager.h" />
     <ClInclude Include="src\Game\collisions.h" />
     <ClInclude Include="src\Game\game.h" />
+    <ClInclude Include="src\Game\score.h" />
     <ClInclude Include="src\Game\timer.h" />
     <ClInclude Include="src\Menu\menu.h" />
     <ClInclude Include="src\PlayerShip\bullet.h" />
