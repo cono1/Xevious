@@ -65,7 +65,7 @@ void updateLoseScreen(CurrentScreen& currentScreen, bool& restart)
 	globalScoreText = "Global score: " + std::to_string(getGlobalScore());
 	globalScoreTextPos.x = static_cast<float>((GetScreenWidth()) - MeasureText(globalScoreText.c_str(), scoreSize)) / 2;
 
-	if (checkCursorMenuCollision(mainMenu, mainMenu.initWidth, mainMenu.maxWidth) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	if (checkCursorMenuCollision(mainMenu, mainMenu.initWidth, mainMenu.maxWidth) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_ESCAPE))
 	{
 		restart = true;
 		currentScreen = MENU;
