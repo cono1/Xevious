@@ -21,7 +21,8 @@ void initPlayerShip(PlayerShip& ship)
 	ship.pos = ship.initPos;
 	ship.color = WHITE;
 	ship.texture = LoadTexture("res/Player/playerSpriteSheet.png"); //https://www.gamedevmarket.net/asset/animated-emojis
-	ship.width = ship.texture.width / totalSprites;
+	ship.width = ship.texture.width / totalSprites - 40;
+	ship.height = ship.texture.height - 30;
 	ship.speed = 500;
 	ship.lives = 3;
 	ship.alive = true;
@@ -38,7 +39,7 @@ void updatePlayerShip(PlayerShip& ship)
 			moveUp(ship);
 		}
 
-		if (IsKeyDown(KEY_DOWN) && ship.pos.y + ship.texture.height < GetScreenHeight())
+		if (IsKeyDown(KEY_DOWN) && ship.pos.y + ship.height < GetScreenHeight())
 		{
 			moveDown(ship);
 		}
@@ -61,7 +62,7 @@ void drawPlayerShip(PlayerShip ship)
 {
 	if (ship.alive)
 	{
-		Rectangle dest = { ship.pos.x + ship.width / 2, ship.pos.y + ship.texture.height / 2,
+		Rectangle dest = { ship.pos.x + ship.width / 2, ship.pos.y + ship.height / 2,
 						   static_cast<float>(ship.texture.width / totalSprites),
 						   static_cast<float>(ship.texture.height) };
 
@@ -71,7 +72,7 @@ void drawPlayerShip(PlayerShip ship)
 		DrawTexturePro(ship.texture, getFrameRect(playerAnimation), dest, origin, 0, ship.color);
 
 #ifdef _DEBUG
-		DrawRectangleLines(static_cast<int>(ship.pos.x), static_cast<int>(ship.pos.y), ship.width, ship.texture.height, ship.color);
+		DrawRectangleLines(static_cast<int>(ship.pos.x), static_cast<int>(ship.pos.y), ship.width, ship.height, ship.color);
 #endif
 	}
 }

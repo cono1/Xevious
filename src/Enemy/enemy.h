@@ -11,6 +11,7 @@ struct Enemy
 	Vector2 pos;
 	Color color;
 	int width;
+	int height;
 	float speed;
 	bool alive;
 };

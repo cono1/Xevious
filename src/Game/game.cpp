@@ -55,7 +55,7 @@ void updateGame(CurrentScreen& currentScreen, bool& restart)
 	{
 		for (int j = 0; j < maxBullets; j++)
 		{
-			if (checkCollisions(bullets[j].pos, bullets[j].texture.width, bullets[j].texture.height, enemies[i].pos, enemies[i].width, enemies[i].texture.height)
+			if (checkCollisions(bullets[j].pos, bullets[j].texture.width, bullets[j].texture.height, enemies[i].pos, enemies[i].width, enemies[i].height)
 				&& bullets[j].alive && enemies[i].alive)
 			{
 				addScore();
@@ -67,7 +67,7 @@ void updateGame(CurrentScreen& currentScreen, bool& restart)
 
 	for (int i = 0; i < maxEnemies; i++)
 	{
-		if (checkCollisions(ship.pos, ship.width, ship.texture.height, enemies[i].pos, enemies[i].width, enemies[i].texture.height) && enemies[i].alive)
+		if (checkCollisions(ship.pos, ship.width, ship.height, enemies[i].pos, enemies[i].width, enemies[i].height) && enemies[i].alive)
 		{
 			ship.alive = false;
 			initEnemy(enemies[i]);

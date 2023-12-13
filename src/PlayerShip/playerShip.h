@@ -11,6 +11,7 @@ struct PlayerShip
 	Color color;
 	Texture2D texture;
 	int width;
+	int height;
 	float speed;
 	int lives;
 	bool alive;

@@ -18,7 +18,8 @@ void initEnemy(Enemy& enemy)
 	enemy.initPos.y = 5;
 	enemy.pos = enemy.initPos;
 	enemy.color = WHITE;
-	enemy.width = enemy.texture.width / totalSprites;
+	enemy.width = enemy.texture.width / totalSprites - 60;
+	enemy.height = enemy.texture.height - 40;
 	enemy.speed = 200;
 	enemy.alive = true;
 
@@ -43,7 +44,7 @@ void drawEnemy(Enemy& enemy)
 {
 	if (enemy.alive)
 	{
-		Rectangle dest = { enemy.pos.x + 10 + enemy.width / 2, enemy.pos.y + enemy.texture.height / 2,
+		Rectangle dest = { enemy.pos.x + 10 + enemy.width / 2, enemy.pos.y + enemy.height / 2,
 						   static_cast<float>(enemy.texture.width / totalSprites), 
 						   static_cast<float>(enemy.texture.height) };
 
@@ -53,7 +54,7 @@ void drawEnemy(Enemy& enemy)
 		DrawTexturePro(enemy.texture, getFrameRect(enemyAnimation), dest, origin, 0, enemy.color);
 
 #ifdef _DEBUG
-		DrawRectangleLines(static_cast<int>(enemy.pos.x), static_cast<int>(enemy.pos.y), enemy.width, enemy.texture.height, enemy.color);
+		DrawRectangleLines(static_cast<int>(enemy.pos.x), static_cast<int>(enemy.pos.y), enemy.width, enemy.height, enemy.color);
 #endif
 		//DrawTextureV(enemy.texture, enemy.pos, enemy.color);
 	}
