@@ -13,6 +13,6 @@ struct BackButtonRec
 };
 
 void initBackButton();
-void printBackButton(bool pause, int fontSize);
+void printBackButton(bool pause);
 bool isMouseHoverPause();
 }

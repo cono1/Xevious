@@ -27,8 +27,8 @@ void updateGameManager();
 
 void updatePlayState();
 void updateMenuAndPauseStates();
-void drawPlayState(int pauseSize);
-void drawRulesState(int pauseSize);
+void drawPlayState();
+void drawRulesState();
 void checkGoBack();
 
 void deInitGameManager();
@@ -63,7 +63,6 @@ void updateGameManager()
 {
 	int titleSize = 80;
 	int optionsSize = 50;
-	int pauseSize = 20;
 
 	SetExitKey(NULL);
 
@@ -103,10 +102,10 @@ void updateGameManager()
 		switch (currentScreen)
 		{
 		case game::PLAY:
-			drawPlayState(pauseSize);
+			drawPlayState();
 			break;
 		case game::RULES:
-			drawRulesState(pauseSize);
+			drawRulesState();
 			break;
 		case game::CREDITS:
 			printCredits();
@@ -152,16 +151,16 @@ void updateMenuAndPauseStates()
 	updateMenu(currentScreen);
 }
 
-void drawPlayState(int pauseSize)
+void drawPlayState()
 {
 	drawGame();
 	drawScore();
-	printBackButton(true, pauseSize);
+	printBackButton(true);
 }
 
-void drawRulesState(int pauseSize)
+void drawRulesState()
 {
-	printBackButton(false, pauseSize);
+	printBackButton(false);
 	printRules();
 }
 

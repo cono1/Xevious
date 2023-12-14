@@ -71,7 +71,7 @@ void printCredits()
         }
     }
 
-    printBackButton(false, 10);
+    printBackButton(false);
 }
 
 bool checkMouseHoverCredits(Vector2 textPos, std::string text)
