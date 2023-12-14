@@ -25,7 +25,6 @@ static bool closeGame = false;
 void initGameManager();
 void updateGameManager();
 
-void updateMenuAndPauseStates();
 void drawPlayState();
 
 void deInitGameManager();
@@ -82,7 +81,7 @@ void updateGameManager()
 			break;
 		case game::MENU:
 		case game::PAUSE:
-			updateMenuAndPauseStates();
+			updateMenu(currentScreen, prevScreen, closeGame);
 			break;
 		case game::LOSE:
 			updateLoseScreen(currentScreen, restart);
@@ -123,18 +122,6 @@ void updateGameManager()
 
 		EndDrawing();
 	}
-}
-
-void updateMenuAndPauseStates()
-{
-	playMenuMusic();
-	UpdateMusicStream(getMenuMusic());
-	prevScreen = currentScreen;
-	if (IsKeyPressed(KEY_ESCAPE))
-	{
-		closeGame = true;
-	}
-	updateMenu(currentScreen);
 }
 
 void drawPlayState()

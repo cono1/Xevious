@@ -5,6 +5,8 @@
 
 #include <raylib.h>
 
+#include "Sound/sound.h"
+
 namespace game
 {
 const int maxMenuRects = 4;
@@ -30,8 +32,16 @@ void initMenu(const int screenWidth)
 	}
 }
 
-void updateMenu(CurrentScreen& currentScreen)
+void updateMenu(CurrentScreen& currentScreen, CurrentScreen& prevScreen, bool& closeGame)
 {
+	playMenuMusic();
+	UpdateMusicStream(getMenuMusic());
+	prevScreen = currentScreen;
+	if (IsKeyPressed(KEY_ESCAPE))
+	{
+		closeGame = true;
+	}
+
 	if (checkMenuInput(PLAY) || IsKeyPressed(KEY_ENTER))
 	{
 		currentScreen = PLAY;
