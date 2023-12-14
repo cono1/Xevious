@@ -4,6 +4,8 @@
 
 #include "raylib.h"
 
+#include "Menu/backButton.h"
+
 namespace game
 {
 static std::string text1;
@@ -39,6 +41,8 @@ void printRules()
     DrawText(text4.c_str(), getXPos(text4), 410, fontSize, textColor);
     DrawText(text5.c_str(), getXPos(text5), 510, fontSize, textColor);
     DrawText(text6.c_str(), getXPos(text6), 610, fontSize, textColor);
+
+    printBackButton(false);
 }
 
 int getXPos(std::string text)

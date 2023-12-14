@@ -105,7 +105,7 @@ void updateGameManager()
 			drawPlayState();
 			break;
 		case game::RULES:
-			drawRulesState();
+			printRules();
 			break;
 		case game::CREDITS:
 			printCredits();
@@ -156,12 +156,6 @@ void drawPlayState()
 	drawGame();
 	drawScore();
 	printBackButton(true);
-}
-
-void drawRulesState()
-{
-	printBackButton(false);
-	printRules();
 }
 
 void checkGoBack()
