@@ -28,8 +28,6 @@ void updateGameManager();
 void updatePlayState();
 void updateMenuAndPauseStates();
 void drawPlayState();
-void drawRulesState();
-void checkGoBack();
 
 void deInitGameManager();
 
@@ -72,7 +70,7 @@ void updateGameManager()
 		switch (currentScreen)
 		{
 		case game::PLAY:
-			updatePlayState();
+			updateGame(currentScreen, prevScreen, restart);
 			break;
 		case game::RULES:
 			checkGoBack();
@@ -127,16 +125,6 @@ void updateGameManager()
 
 		EndDrawing();
 	}
-}
-
-void updatePlayState()
-{
-	prevScreen = currentScreen;
-	playGameMusic();
-	UpdateMusicStream(getGameMusic());
-	checkGoBack();
-	updateGame(currentScreen, restart);
-	updateScore();
 }
 
 void updateMenuAndPauseStates()

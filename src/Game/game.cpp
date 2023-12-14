@@ -10,6 +10,7 @@
 #include "Sound/sound.h"
 #include "timer.h"
 #include "score.h"
+#include "gameManager.h"
 
 namespace game
 {
@@ -47,9 +48,14 @@ void initGame()
 	initBackground();	
 }
 
-void updateGame(CurrentScreen& currentScreen, bool& restart)
+void updateGame(CurrentScreen& currentScreen, CurrentScreen& prevScreen, bool& restart)
 {
 	updateGameObjects();
+	prevScreen = currentScreen;
+	playGameMusic();
+	UpdateMusicStream(getGameMusic());
+	checkGoBack();
+	updateScore();
 
 	for (int i = 0; i < maxEnemies; i++)
 	{
