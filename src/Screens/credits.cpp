@@ -5,6 +5,7 @@
 #include "raylib.h"
 
 #include "Menu/backButton.h"
+#include "gameManager.h"
 
 namespace game
 {
@@ -57,6 +58,8 @@ void updateCredits()
             }
         }
     }
+
+    checkGoBack();
 }
 
 void printCredits()

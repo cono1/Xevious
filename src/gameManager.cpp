@@ -76,7 +76,6 @@ void updateGameManager()
 			break;
 		case game::CREDITS:
 			updateCredits();
-			checkGoBack();
 			break;
 		case game::EXIT:
 			return;
