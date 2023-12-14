@@ -207,6 +207,7 @@
     <ClCompile Include="src\Game\score.cpp" />
     <ClCompile Include="src\Game\timer.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Menu\backButton.cpp" />
     <ClCompile Include="src\Menu\menu.cpp" />
     <ClCompile Include="src\PlayerShip\bullet.cpp" />
     <ClCompile Include="src\PlayerShip\playerShip.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="src\Game\game.h" />
     <ClInclude Include="src\Game\score.h" />
     <ClInclude Include="src\Game\timer.h" />
+    <ClInclude Include="src\Menu\backButton.h" />
     <ClInclude Include="src\Menu\menu.h" />
     <ClInclude Include="src\PlayerShip\bullet.h" />
     <ClInclude Include="src\PlayerShip\playerShip.h" />

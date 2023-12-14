@@ -5,6 +5,7 @@
 #include "raylib.h"
 
 #include "Game/score.h"
+#include "Menu/menu.h"
 
 namespace game
 {

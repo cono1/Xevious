@@ -17,6 +17,7 @@
     <ClCompile Include="src\Animations\animation.cpp" />
     <ClCompile Include="src\Screens\credits.cpp" />
     <ClCompile Include="src\Game\score.cpp" />
+    <ClCompile Include="src\Menu\backButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PlayerShip\playerShip.h" />
@@ -34,5 +35,6 @@
     <ClInclude Include="src\Animations\animation.h" />
     <ClInclude Include="src\Screens\credits.h" />
     <ClInclude Include="src\Game\score.h" />
+    <ClInclude Include="src\Menu\backButton.h" />
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
 #include "raylib.h"
 
 #include "Menu/menu.h"
+#include "Menu/backButton.h"
 #include "Game/game.h"
 #include "Game/score.h"
 #include "Sound/sound.h"
@@ -52,6 +53,7 @@ void initGameManager()
 	SetMusicVolume(getGameMusic(), 0.5f);
 	initGame();
 	initMenu(screenWidth);
+	initBackButton();
 	initCredits();
 	initRules();
 	initLoseScreen();

@@ -10,7 +10,6 @@ namespace game
 const int maxMenuRects = 4;
 const int maxGameOverRects = 2;
 static MenuRect menuRect[maxMenuRects];
-static MenuRect pauseRect;
 
 void writeOnMenuSquare(std::string word, int pos, int fontSize);
 bool checkMenuInput(CurrentScreen currentSquare);
@@ -29,13 +28,6 @@ void initMenu(const int screenWidth)
 		menuRect[i].initWidth = menuRect[i].width;
 		menuRect[i].maxWidth = menuRect[i].width + 20;
 	}
-
-	pauseRect.x = 40;
-	pauseRect.y = 15;
-	pauseRect.width = 35;
-	pauseRect.height = 35;
-	pauseRect.initWidth = pauseRect.width;
-	pauseRect.maxWidth = pauseRect.width + 10;
 }
 
 void updateMenu(CurrentScreen& currentScreen)
@@ -111,24 +103,6 @@ bool checkCursorMenuCollision(MenuRect& menuRec, float initWidth, float maxWidth
 		menuRec.width = initWidth;
 		return false;
 	}
-}
-
-void printBackButton(bool pause, int fontSize)
-{
-	DrawRectangleGradientH(static_cast<int>(pauseRect.x - pauseRect.width / 2),
-		static_cast<int>(pauseRect.y - pauseRect.height / 2),
-		static_cast<int>(pauseRect.width),
-		static_cast<int>(pauseRect.height), BLUE, DARKPURPLE);
-
-	if (pause)
-		DrawText("||", pauseRect.x, pauseRect.y - 10, fontSize, WHITE);
-	else
-		DrawText("<-", pauseRect.x, pauseRect.y - 10, fontSize, WHITE);
-}
-
-bool isMouseHoverPause()
-{
-	return checkCursorMenuCollision(pauseRect, pauseRect.initWidth, pauseRect.maxWidth);
 }
 
 void writeOnMenuSquare(std::string word, int pos, int fontSize)
