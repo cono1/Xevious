@@ -25,7 +25,6 @@ static bool closeGame = false;
 void initGameManager();
 void updateGameManager();
 
-void updatePlayState();
 void updateMenuAndPauseStates();
 void drawPlayState();
 
@@ -73,7 +72,7 @@ void updateGameManager()
 			updateGame(currentScreen, prevScreen, restart);
 			break;
 		case game::RULES:
-			checkGoBack();
+			updateRules();
 			break;
 		case game::CREDITS:
 			updateCredits();

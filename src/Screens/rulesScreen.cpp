@@ -5,6 +5,7 @@
 #include "raylib.h"
 
 #include "Menu/backButton.h"
+#include "gameManager.h"
 
 namespace game
 {
@@ -31,6 +32,11 @@ void initRules()
     text4 = "Avoid enemy collisions to stay alive";
     text5 = "Press ESC to pause the game";
     text6 = "Press ENTER to play, resume or play again";
+}
+
+void updateRules()
+{
+    checkGoBack();
 }
 
 void printRules()
