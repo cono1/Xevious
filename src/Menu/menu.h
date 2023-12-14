@@ -2,10 +2,10 @@
 
 #include <string>
 
+#include "gameManager.h"
+
 namespace game
 {
-enum CurrentScreen { PLAY, RULES, CREDITS, EXIT, MENU, PAUSE, LOSE };
-
 struct MenuRect
 {
 	int x;
