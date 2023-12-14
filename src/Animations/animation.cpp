@@ -8,13 +8,12 @@ void initAnimation(Animation& animation, float textureWidth, float textureHeight
 	animation.frameRect = { 0.0f, 0.0f, textureWidth / animation.maxFrames, textureHeight };
 	animation.currentFrame = 0;
 	animation.framesCounter = 0;
-	animation.frameLenght = 0.04f;
-	animation.frameCounterIncrement = 0.1f;
+	animation.frameLenght = 0.4f;
 }
 
 void updateAnimation(Animation& animation, float textureWidth)
 {
-	animation.framesCounter += animation.frameCounterIncrement * GetFrameTime();
+	animation.framesCounter += GetFrameTime();
 
 	if (animation.framesCounter >= animation.frameLenght)
 	{
