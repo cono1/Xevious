@@ -11,6 +11,7 @@
 #include "timer.h"
 #include "score.h"
 #include "gameManager.h"
+#include "Menu/backButton.h"
 
 namespace game
 {
@@ -146,7 +147,10 @@ void drawGame()
 	{
 		drawBullet(bullets[i]);
 	}
+
 	drawPlayerShip(ship);
+	drawScore();
+	printBackButton(true);
 }
 
 void deInitGame()

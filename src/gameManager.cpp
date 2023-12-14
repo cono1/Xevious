@@ -24,9 +24,6 @@ static bool closeGame = false;
 
 void initGameManager();
 void updateGameManager();
-
-void drawPlayState();
-
 void deInitGameManager();
 
 void gameLoop()
@@ -97,7 +94,7 @@ void updateGameManager()
 		switch (currentScreen)
 		{
 		case game::PLAY:
-			drawPlayState();
+			drawGame();
 			break;
 		case game::RULES:
 			printRules();
@@ -122,13 +119,6 @@ void updateGameManager()
 
 		EndDrawing();
 	}
-}
-
-void drawPlayState()
-{
-	drawGame();
-	drawScore();
-	printBackButton(true);
 }
 
 void checkGoBack()
