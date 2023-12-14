@@ -25,6 +25,7 @@ static bool closeGame = false;
 void initGameManager();
 void updateGameManager();
 void updateGameScreens();
+void drawGameScreens();
 void deInitGameManager();
 
 void gameLoop()
@@ -55,46 +56,12 @@ void initGameManager()
 
 void updateGameManager()
 {
-	int titleSize = 80;
-	int optionsSize = 50;
-
 	SetExitKey(NULL);
 
 	while (!WindowShouldClose() && !closeGame)
 	{		
 		updateGameScreens();
-
-		//drawing
-		BeginDrawing();
-		ClearBackground(GOLD);
-
-		switch (currentScreen)
-		{
-		case game::PLAY:
-			drawGame();
-			break;
-		case game::RULES:
-			printRules();
-			break;
-		case game::CREDITS:
-			printCredits();
-			break;
-		case game::EXIT:
-			break;
-		case game::MENU:
-			printMenu("Xyphoria", "play", titleSize, optionsSize);
-			break;
-		case game::PAUSE:
-			printMenu("Paused", "resume", titleSize, optionsSize);
-			break;
-		case game::LOSE:
-			printLoseScreen();
-			break;
-		default:
-			break;
-		}
-
-		EndDrawing();
+		drawGameScreens();		
 	}
 }
 
@@ -124,6 +91,43 @@ void updateGameScreens()
 	default:
 		break;
 	}
+}
+
+void drawGameScreens()
+{
+	int titleSize = 80;
+	int optionsSize = 50;
+
+	BeginDrawing();
+	ClearBackground(GOLD);
+
+	switch (currentScreen)
+	{
+	case game::PLAY:
+		drawGame();
+		break;
+	case game::RULES:
+		printRules();
+		break;
+	case game::CREDITS:
+		printCredits();
+		break;
+	case game::EXIT:
+		break;
+	case game::MENU:
+		printMenu("Xyphoria", "play", titleSize, optionsSize);
+		break;
+	case game::PAUSE:
+		printMenu("Paused", "resume", titleSize, optionsSize);
+		break;
+	case game::LOSE:
+		printLoseScreen();
+		break;
+	default:
+		break;
+	}
+
+	EndDrawing();
 }
 
 void checkGoBack()
