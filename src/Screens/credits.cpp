@@ -4,6 +4,8 @@
 
 #include "raylib.h"
 
+#include "Menu/backButton.h"
+
 namespace game
 {
 static const int total = 7;
@@ -68,6 +70,8 @@ void printCredits()
             DrawText(texts[i].c_str(), static_cast<int>(textPositions[i].x), static_cast<int>(textPositions[i].y), fontSize, secondTextColor);
         }
     }
+
+    printBackButton(false, 10);
 }
 
 bool checkMouseHoverCredits(Vector2 textPos, std::string text)

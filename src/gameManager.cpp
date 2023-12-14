@@ -29,7 +29,6 @@ void updatePlayState();
 void updateMenuAndPauseStates();
 void drawPlayState(int pauseSize);
 void drawRulesState(int pauseSize);
-void drawCreditsState(int pauseSize);
 void checkGoBack();
 
 void deInitGameManager();
@@ -110,7 +109,7 @@ void updateGameManager()
 			drawRulesState(pauseSize);
 			break;
 		case game::CREDITS:
-			drawCreditsState(pauseSize);
+			printCredits();
 			break;
 		case game::EXIT:
 			break;
@@ -164,12 +163,6 @@ void drawRulesState(int pauseSize)
 {
 	printBackButton(false, pauseSize);
 	printRules();
-}
-
-void drawCreditsState(int pauseSize)
-{
-	printBackButton(false, pauseSize);
-	printCredits();
 }
 
 void checkGoBack()
