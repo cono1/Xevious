@@ -24,6 +24,7 @@ static bool closeGame = false;
 
 void initGameManager();
 void updateGameManager();
+void updateGameScreens();
 void deInitGameManager();
 
 void gameLoop()
@@ -61,31 +62,7 @@ void updateGameManager()
 
 	while (!WindowShouldClose() && !closeGame)
 	{		
-		//update
-		switch (currentScreen)
-		{
-		case game::PLAY:
-			updateGame(currentScreen, prevScreen, restart);
-			break;
-		case game::RULES:
-			updateRules();
-			break;
-		case game::CREDITS:
-			updateCredits();
-			break;
-		case game::EXIT:
-			return;
-			break;
-		case game::MENU:
-		case game::PAUSE:
-			updateMenu(currentScreen, prevScreen, closeGame);
-			break;
-		case game::LOSE:
-			updateLoseScreen(currentScreen, restart);
-			break;
-		default:
-			break;
-		}
+		updateGameScreens();
 
 		//drawing
 		BeginDrawing();
@@ -118,6 +95,34 @@ void updateGameManager()
 		}
 
 		EndDrawing();
+	}
+}
+
+void updateGameScreens()
+{
+	switch (currentScreen)
+	{
+	case game::PLAY:
+		updateGame(currentScreen, prevScreen, restart);
+		break;
+	case game::RULES:
+		updateRules();
+		break;
+	case game::CREDITS:
+		updateCredits();
+		break;
+	case game::EXIT:
+		return;
+		break;
+	case game::MENU:
+	case game::PAUSE:
+		updateMenu(currentScreen, prevScreen, closeGame);
+		break;
+	case game::LOSE:
+		updateLoseScreen(currentScreen, restart);
+		break;
+	default:
+		break;
 	}
 }
 
