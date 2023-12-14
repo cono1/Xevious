@@ -13,13 +13,16 @@ const int maxMenuRects = 4;
 const int maxGameOverRects = 2;
 static MenuRect menuRect[maxMenuRects];
 
-void writeOnMenuSquare(std::string word, int pos, int fontSize);
+static int optionsSize;
+
+void writeOnMenuSquare(std::string word, int pos);
 bool checkMenuInput(CurrentScreen currentSquare);
 
 void initMenu(const int screenWidth)
 {
 	int spaceBetweenRects = 20;
 	int firstRectYPosition = 300;
+	optionsSize = 50;
 
 	for (int i = 0; i < maxMenuRects; i++)
 	{
@@ -37,6 +40,7 @@ void updateMenu(CurrentScreen& currentScreen, CurrentScreen& prevScreen, bool& c
 	playMenuMusic();
 	UpdateMusicStream(getMenuMusic());
 	prevScreen = currentScreen;
+
 	if (IsKeyPressed(KEY_ESCAPE))
 	{
 		closeGame = true;
@@ -68,8 +72,10 @@ void updateMenu(CurrentScreen& currentScreen, CurrentScreen& prevScreen, bool& c
 	}
 }
 
-void printMenu(std::string title, std::string firstOption, int titleSize, int optionsSize)
+void printMenu(std::string title, std::string firstOption)
 {
+	int titleSize = 80;
+
 	DrawText(TextFormat(title.c_str()), (GetScreenWidth() - MeasureText(title.c_str(), titleSize)) / 2, 100, titleSize, WHITE);
 
 	for (int i = 0; i < maxMenuRects; i++)
@@ -80,16 +86,16 @@ void printMenu(std::string title, std::string firstOption, int titleSize, int op
 			static_cast<int>(menuRect[i].height), BLUE, DARKPURPLE);
 
 		if (i == PLAY)
-			writeOnMenuSquare(firstOption, i, optionsSize);
+			writeOnMenuSquare(firstOption, i);
 
 		if (i == RULES)
-			writeOnMenuSquare("how to play", i, optionsSize);
+			writeOnMenuSquare("how to play", i);
 
 		if (i == CREDITS)
-			writeOnMenuSquare("credits", i, optionsSize);
+			writeOnMenuSquare("credits", i);
 
 		if (i == EXIT)
-			writeOnMenuSquare("exit", i, optionsSize);
+			writeOnMenuSquare("exit", i);
 	}
 }
 
@@ -115,12 +121,12 @@ bool checkCursorMenuCollision(MenuRect& menuRec, float initWidth, float maxWidth
 	}
 }
 
-void writeOnMenuSquare(std::string word, int pos, int fontSize)
+void writeOnMenuSquare(std::string word, int pos)
 {
-	int xOffsetText = static_cast<int>(menuRect[pos].x) - static_cast<int>(MeasureText(word.c_str(), fontSize)) / 2;
-	int yOffsetText = static_cast<int>((menuRect[pos].height - fontSize / 2) / 2);
+	int xOffsetText = static_cast<int>(menuRect[pos].x) - static_cast<int>(MeasureText(word.c_str(), optionsSize)) / 2;
+	int yOffsetText = static_cast<int>((menuRect[pos].height - optionsSize / 2) / 2);
 
-	DrawText(word.c_str(), xOffsetText, menuRect[pos].y - yOffsetText, fontSize, WHITE);
+	DrawText(word.c_str(), xOffsetText, menuRect[pos].y - yOffsetText, optionsSize, WHITE);
 }
 
 bool checkMenuInput(CurrentScreen currentSquare)

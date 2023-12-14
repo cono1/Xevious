@@ -95,9 +95,6 @@ void updateGameScreens()
 
 void drawGameScreens()
 {
-	int titleSize = 80;
-	int optionsSize = 50;
-
 	BeginDrawing();
 	ClearBackground(GOLD);
 
@@ -115,10 +112,10 @@ void drawGameScreens()
 	case game::EXIT:
 		break;
 	case game::MENU:
-		printMenu("Xyphoria", "play", titleSize, optionsSize);
+		printMenu("Xyphoria", "play");
 		break;
 	case game::PAUSE:
-		printMenu("Paused", "resume", titleSize, optionsSize);
+		printMenu("Paused", "resume");
 		break;
 	case game::LOSE:
 		printLoseScreen();
